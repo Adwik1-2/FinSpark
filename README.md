@@ -56,11 +56,7 @@ fins/
 
 ```bash
 cd fastapi_backend
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Run the server
 python main.py
 ```
 
@@ -70,15 +66,13 @@ Server runs at: `http://127.0.0.1:8001`
 
 ```bash
 cd FinSpark-Integration-Orchestrator
-
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
 ```
 
 Frontend runs at: `http://localhost:5176`
+
+For detailed setup instructions, see [SETUP_GUIDE.md](SETUP_GUIDE.md)
 
 ## 📋 Key Features
 
