@@ -212,6 +212,36 @@ See [AUTHENTICATION_README.md](AUTHENTICATION_README.md) for detailed authentica
 - [fastapi_backend/README.md](fastapi_backend/README.md) - Backend API documentation
 - [FinSpark-Integration-Orchestrator/README.md](FinSpark-Integration-Orchestrator/README.md) - Frontend documentation
 
+## 🌐 Production Deployment
+
+Deploy FinSpark to production with ease:
+
+- **[QUICK_DEPLOY_VERCEL.md](QUICK_DEPLOY_VERCEL.md)** - ⚡ 3-minute Vercel deployment guide
+- **[VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md)** - 📖 Complete deployment guide with all options
+
+### Quick Deployment Options
+
+**Frontend** - Deploy to **Vercel** (Recommended)
+```bash
+# Already configured - just connect GitHub repo to Vercel
+# See QUICK_DEPLOY_VERCEL.md for 3-minute setup
+```
+
+**Backend** - Deploy to **Heroku** or **Railway.app**
+```bash
+# Procfile and runtime.txt already included
+# See VERCEL_DEPLOYMENT.md for detailed backend setup
+```
+
+**Automated Deployment** - Run deployment script
+```bash
+# Linux/Mac
+./deploy.sh
+
+# Windows
+.\deploy.ps1
+```
+
 ## 🔄 API Endpoints
 
 ### Core Endpoints
