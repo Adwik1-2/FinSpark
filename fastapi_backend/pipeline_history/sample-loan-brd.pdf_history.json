@@ -25990,6 +25990,679 @@
         }
       },
       "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-05T02:08:38.292395",
+      "data": {
+        "results": [
+          {
+            "document_index": 1,
+            "document_name": "sample-loan-brd.pdf",
+            "timestamp": "2026-04-04T20:38:38.249502Z",
+            "result": {
+              "pipeline_summary": {
+                "document_id": "7896cc5a-d754-4d11-9e64-3c5620b420c5",
+                "field_count": 7,
+                "mapping_completeness": 0.89,
+                "overall_quality_score": 0.85,
+                "deployment_ready": true,
+                "total_processing_time_ms": 7838.618040084839,
+                "intent": "loan_application",
+                "workflow_type": "loan_processing"
+              },
+              "step_1_document_parsing": {
+                "sections": [
+                  "BUSINESS REQUIREMENT DOCUMENT",
+                  "Quick Loan Disbursement System",
+                  "Version 1.0 | Date: 01-04-2026",
+                  "1. PROJECT OVERVIEW",
+                  "This system enables Bajaj Finance customers to apply for loans, verify identity via KYC, and",
+                  "receive funds via UPI.",
+                  "3. SYSTEM REQUIREMENTS",
+                  "\u007f",
+                  "Customer Verification (PAN/Aadhaar)",
+                  "\u007f",
+                  "CIBIL Credit Check",
+                  "\u007f",
+                  "Automated Disbursal",
+                  "\u007f",
+                  "e-Sign Integration",
+                  "4. CUSTOMER DATA FIELDS",
+                  "Full Name, PAN, Aadhaar, Phone Number, Loan Amount, Bank Details, UPI ID",
+                  ""
+                ],
+                "tables": [],
+                "extraction_quality_score": 0.85,
+                "processing_time_ms": 0.0324249267578125
+              },
+              "step_2_field_extraction": {
+                "extracted_fields": [
+                  {
+                    "field_name": "Name",
+                    "value": "",
+                    "confidence": 0.91,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "PAN",
+                    "value": "",
+                    "confidence": 0.88,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "Aadhaar",
+                    "value": "",
+                    "confidence": 0.93,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "Phone Number",
+                    "value": "",
+                    "confidence": 0.89,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "Loan Amount",
+                    "value": "",
+                    "confidence": 0.87,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "Bank Details",
+                    "value": "",
+                    "confidence": 0.92,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "UPI ID",
+                    "value": "",
+                    "confidence": 0.94,
+                    "data_type": "string"
+                  }
+                ],
+                "missing_fields": {
+                  "mandatory": [],
+                  "optional": []
+                },
+                "intent": "loan_application",
+                "intent_confidence": 0.9,
+                "quality_metrics": {
+                  "extraction_completeness": 0.89
+                },
+                "processing_time_ms": 0.40912628173828125
+              },
+              "step_3_api_mapping": {
+                "mappings": [
+                  {
+                    "source_field": "Name",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "name",
+                    "match_confidence": 0.91,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for name"
+                  },
+                  {
+                    "source_field": "PAN",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "pan",
+                    "match_confidence": 0.88,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for pan"
+                  },
+                  {
+                    "source_field": "Aadhaar",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "aadhaar",
+                    "match_confidence": 0.93,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for aadhaar"
+                  },
+                  {
+                    "source_field": "Phone Number",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "phone",
+                    "match_confidence": 0.84,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for phone"
+                  },
+                  {
+                    "source_field": "Loan Amount",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "loan",
+                    "match_confidence": 0.8,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for amount"
+                  },
+                  {
+                    "source_field": "Bank Details",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "bank",
+                    "match_confidence": 0.86,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for bank"
+                  },
+                  {
+                    "source_field": "UPI ID",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "upi",
+                    "match_confidence": 0.93,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for upi"
+                  }
+                ],
+                "available_apis": [
+                  {
+                    "api_id": "kyc-pro",
+                    "description": "Identity verification and KYC compliance API",
+                    "keywords": [
+                      "identity",
+                      "verification",
+                      "kyc",
+                      "compliance",
+                      "name",
+                      "aadhar",
+                      "pan",
+                      "address",
+                      "dob"
+                    ],
+                    "is_selected": false,
+                    "mapped_fields_count": 7
+                  }
+                ],
+                "selected_api": "plaid",
+                "mapping_strategy": "ai_based",
+                "ai_status": "enabled",
+                "ai_analysis": [
+                  {
+                    "field_name": "Name",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.92,
+                    "reasoning": "Confidence for name",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "PAN",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.88,
+                    "reasoning": "Confidence for pan",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "Aadhaar",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.94,
+                    "reasoning": "Confidence for aadhaar",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "Phone Number",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.84,
+                    "reasoning": "Confidence for phone",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "Loan Amount",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.8,
+                    "reasoning": "Confidence for amount",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "Bank Details",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.86,
+                    "reasoning": "Confidence for bank",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "UPI ID",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.93,
+                    "reasoning": "Confidence for upi",
+                    "transformation": null
+                  }
+                ],
+                "mapping_statistics": {
+                  "mapped_fields": 7,
+                  "perfect_matches": 4,
+                  "good_matches": 2,
+                  "matches_with_transformation": 0,
+                  "average_confidence": 0.86,
+                  "overall_mapping_completeness": 0.83
+                },
+                "processing_time_ms": 7838.101148605347,
+                "recommendations": [
+                  "Using plaid for this workflow"
+                ]
+              },
+              "step_4_simulation": {
+                "status": "SUCCESS",
+                "api_call_results": [
+                  {
+                    "api_id": "loan-api",
+                    "status": "SUCCESS",
+                    "response": {
+                      "response_time_ms": 120
+                    }
+                  }
+                ],
+                "deployment_readiness": {
+                  "is_ready": true,
+                  "readiness_score": 0.9,
+                  "checklist": {
+                    "fields_present": true,
+                    "mapping_complete": true,
+                    "api_success": true
+                  },
+                  "issues": [],
+                  "warnings": []
+                },
+                "simulation_logs": [
+                  {
+                    "level": "INFO",
+                    "message": "Simulation started"
+                  },
+                  {
+                    "level": "SUCCESS",
+                    "message": "API call successful"
+                  }
+                ],
+                "duration_ms": 0.00286102294921875
+              }
+            },
+            "detected_apis": [
+              {
+                "api_id": "upi-gateway",
+                "name": "UPI Payment Gateway",
+                "category": "Payments",
+                "confidence": 0.5,
+                "matched_keywords": [
+                  "upi",
+                  "amount",
+                  "beneficiary_name"
+                ],
+                "priority": 1,
+                "fields": [
+                  "upi_id",
+                  "amount",
+                  "transaction_id",
+                  "beneficiary_name"
+                ],
+                "field_matches": 2,
+                "requirement_matches": 1
+              },
+              {
+                "api_id": "bank-disbursal",
+                "name": "Bank Disbursal & UPI",
+                "category": "Banking/Payments",
+                "confidence": 0.47,
+                "matched_keywords": [
+                  "disbursal",
+                  "disbursement",
+                  "automated disbursal"
+                ],
+                "priority": 1,
+                "fields": [
+                  "account_number",
+                  "ifsc_code",
+                  "account_holder_name",
+                  "bank_name",
+                  "upi_id",
+                  "loan_amount"
+                ],
+                "field_matches": 2,
+                "requirement_matches": 4
+              },
+              {
+                "api_id": "kyc-pro",
+                "name": "KYC & Identity Verification",
+                "category": "Compliance/Verification",
+                "confidence": 0.38,
+                "matched_keywords": [
+                  "customer verification",
+                  "pan",
+                  "first_name"
+                ],
+                "priority": 1,
+                "fields": [
+                  "first_name",
+                  "last_name",
+                  "date_of_birth",
+                  "address",
+                  "pan_number",
+                  "aadhar_number",
+                  "phone_number",
+                  "email"
+                ],
+                "field_matches": 3,
+                "requirement_matches": 2
+              },
+              {
+                "api_id": "loan-origination",
+                "name": "Loan Origination Platform",
+                "category": "Lending",
+                "confidence": 0.25,
+                "matched_keywords": [
+                  "loan",
+                  "quick loan",
+                  "loan disbursement"
+                ],
+                "priority": 1,
+                "fields": [
+                  "loan_amount",
+                  "loan_type",
+                  "tenure",
+                  "interest_rate",
+                  "customer_id"
+                ],
+                "field_matches": 0,
+                "requirement_matches": 3
+              },
+              {
+                "api_id": "cibil",
+                "name": "CIBIL Credit Check",
+                "category": "Credit/Risk",
+                "confidence": 0.5,
+                "matched_keywords": [
+                  "cibil",
+                  "credit check",
+                  "full_name"
+                ],
+                "priority": 2,
+                "fields": [
+                  "full_name",
+                  "pan_number",
+                  "date_of_birth",
+                  "credit_score"
+                ],
+                "field_matches": 2,
+                "requirement_matches": 2
+              },
+              {
+                "api_id": "esign",
+                "name": "e-Sign Integration",
+                "category": "Document Signing",
+                "confidence": 0.3,
+                "matched_keywords": [
+                  "e-sign",
+                  "signer_name"
+                ],
+                "priority": 2,
+                "fields": [
+                  "document_id",
+                  "signer_name",
+                  "signature_date"
+                ],
+                "field_matches": 1,
+                "requirement_matches": 1
+              },
+              {
+                "api_id": "salesforce",
+                "name": "CRM Platform",
+                "category": "CRM",
+                "confidence": 0.25,
+                "matched_keywords": [
+                  "contact_name"
+                ],
+                "priority": 2,
+                "fields": [
+                  "customer_id",
+                  "contact_name",
+                  "email",
+                  "phone_number"
+                ],
+                "field_matches": 1,
+                "requirement_matches": 0
+              }
+            ],
+            "field_to_api_mapping": {
+              "name": [
+                "upi-gateway",
+                "bank-disbursal",
+                "kyc-pro",
+                "cibil"
+              ],
+              "pan": [
+                "kyc-pro",
+                "cibil"
+              ],
+              "aadhaar": [
+                "upi-gateway",
+                "bank-disbursal"
+              ],
+              "phone_number": [
+                "kyc-pro",
+                "salesforce"
+              ],
+              "loan_amount": [
+                "upi-gateway",
+                "bank-disbursal"
+              ],
+              "bank_details": [
+                "bank-disbursal",
+                "cibil"
+              ],
+              "upi_id": [
+                "upi-gateway",
+                "bank-disbursal"
+              ]
+            },
+            "workflow_requirements": [
+              "e-Sign Integration",
+              "Full Name",
+              "Aadhaar",
+              "Phone Number",
+              "Loan Amount",
+              "Bank Details",
+              "UPI ID"
+            ],
+            "auto_detected": true
+          }
+        ],
+        "summary": {
+          "total_documents": 1,
+          "status": "completed"
+        },
+        "intelligent_analysis": {
+          "apis_detected": 7,
+          "detected_apis": [
+            {
+              "api_id": "upi-gateway",
+              "name": "UPI Payment Gateway",
+              "category": "Payments",
+              "confidence": 0.5,
+              "matched_keywords": [
+                "upi",
+                "amount",
+                "beneficiary_name"
+              ],
+              "priority": 1,
+              "fields": [
+                "upi_id",
+                "amount",
+                "transaction_id",
+                "beneficiary_name"
+              ],
+              "field_matches": 2,
+              "requirement_matches": 1
+            },
+            {
+              "api_id": "bank-disbursal",
+              "name": "Bank Disbursal & UPI",
+              "category": "Banking/Payments",
+              "confidence": 0.47,
+              "matched_keywords": [
+                "disbursal",
+                "disbursement",
+                "automated disbursal"
+              ],
+              "priority": 1,
+              "fields": [
+                "account_number",
+                "ifsc_code",
+                "account_holder_name",
+                "bank_name",
+                "upi_id",
+                "loan_amount"
+              ],
+              "field_matches": 2,
+              "requirement_matches": 4
+            },
+            {
+              "api_id": "kyc-pro",
+              "name": "KYC & Identity Verification",
+              "category": "Compliance/Verification",
+              "confidence": 0.38,
+              "matched_keywords": [
+                "customer verification",
+                "pan",
+                "first_name"
+              ],
+              "priority": 1,
+              "fields": [
+                "first_name",
+                "last_name",
+                "date_of_birth",
+                "address",
+                "pan_number",
+                "aadhar_number",
+                "phone_number",
+                "email"
+              ],
+              "field_matches": 3,
+              "requirement_matches": 2
+            },
+            {
+              "api_id": "loan-origination",
+              "name": "Loan Origination Platform",
+              "category": "Lending",
+              "confidence": 0.25,
+              "matched_keywords": [
+                "loan",
+                "quick loan",
+                "loan disbursement"
+              ],
+              "priority": 1,
+              "fields": [
+                "loan_amount",
+                "loan_type",
+                "tenure",
+                "interest_rate",
+                "customer_id"
+              ],
+              "field_matches": 0,
+              "requirement_matches": 3
+            },
+            {
+              "api_id": "cibil",
+              "name": "CIBIL Credit Check",
+              "category": "Credit/Risk",
+              "confidence": 0.5,
+              "matched_keywords": [
+                "cibil",
+                "credit check",
+                "full_name"
+              ],
+              "priority": 2,
+              "fields": [
+                "full_name",
+                "pan_number",
+                "date_of_birth",
+                "credit_score"
+              ],
+              "field_matches": 2,
+              "requirement_matches": 2
+            },
+            {
+              "api_id": "esign",
+              "name": "e-Sign Integration",
+              "category": "Document Signing",
+              "confidence": 0.3,
+              "matched_keywords": [
+                "e-sign",
+                "signer_name"
+              ],
+              "priority": 2,
+              "fields": [
+                "document_id",
+                "signer_name",
+                "signature_date"
+              ],
+              "field_matches": 1,
+              "requirement_matches": 1
+            },
+            {
+              "api_id": "salesforce",
+              "name": "CRM Platform",
+              "category": "CRM",
+              "confidence": 0.25,
+              "matched_keywords": [
+                "contact_name"
+              ],
+              "priority": 2,
+              "fields": [
+                "customer_id",
+                "contact_name",
+                "email",
+                "phone_number"
+              ],
+              "field_matches": 1,
+              "requirement_matches": 0
+            }
+          ],
+          "field_mappings_auto_generated": {
+            "name": [
+              "upi-gateway",
+              "bank-disbursal",
+              "kyc-pro",
+              "cibil"
+            ],
+            "pan": [
+              "kyc-pro",
+              "cibil"
+            ],
+            "aadhaar": [
+              "upi-gateway",
+              "bank-disbursal"
+            ],
+            "phone_number": [
+              "kyc-pro",
+              "salesforce"
+            ],
+            "loan_amount": [
+              "upi-gateway",
+              "bank-disbursal"
+            ],
+            "bank_details": [
+              "bank-disbursal",
+              "cibil"
+            ],
+            "upi_id": [
+              "upi-gateway",
+              "bank-disbursal"
+            ]
+          },
+          "workflow_steps": [
+            "e-Sign Integration",
+            "Full Name",
+            "Aadhaar",
+            "Phone Number",
+            "Loan Amount",
+            "Bank Details",
+            "UPI ID"
+          ],
+          "automation_level": "FULL_AUTO"
+        }
+      },
+      "status": "completed"
     }
   ]
 }

@@ -291,32 +291,41 @@ async def login_with_password(
 ):
     """Login with email and password"""
     try:
+        print(f"🔐 Login attempt for: {request.email}")
         # Find user by email
         user = db.query(User).filter(User.email == request.email).first()
         
         if not user:
+            print(f"❌ User not found: {request.email}")
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Invalid email or password"
             )
         
+        print(f"✅ User found: {user.email}, active: {user.is_active}")
+        
         # Check if user is active
         if not user.is_active:
+            print(f"❌ User inactive: {user.email}")
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail="User account is inactive"
             )
         
         # Verify password
-        if not user.hashed_password or not auth_service.verify_password(
-            request.password, 
-            user.hashed_password
-        ):
+        print(f"🔑 Verifying password for: {user.email}")
+        print(f"   Hashed password in DB: {user.hashed_password[:20]}...")
+        password_valid = auth_service.verify_password(request.password, user.hashed_password)
+        print(f"   Password valid: {password_valid}")
+        
+        if not user.hashed_password or not password_valid:
+            print(f"❌ Password verification failed for: {user.email}")
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Invalid email or password"
             )
         
+        print(f"✅ Login successful for: {user.email}")
         # Update last login
         user.last_login = datetime.utcnow()
         db.commit()

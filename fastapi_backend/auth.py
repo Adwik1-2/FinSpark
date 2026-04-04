@@ -4,15 +4,12 @@ import os
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime, timedelta
-from passlib.context import CryptContext
 from typing import Optional, Tuple
 from dotenv import load_dotenv
 import re
+import bcrypt
 
 load_dotenv()
-
-# Password hashing
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 class AuthService:
     """Authentication service for OTP, email, and password management"""
@@ -20,12 +17,17 @@ class AuthService:
     @staticmethod
     def hash_password(password: str) -> str:
         """Hash password using bcrypt"""
-        return pwd_context.hash(password)
+        salt = bcrypt.gensalt()
+        return bcrypt.hashpw(password.encode(), salt).decode()
     
     @staticmethod
     def verify_password(plain_password: str, hashed_password: str) -> bool:
         """Verify password against hash"""
-        return pwd_context.verify(plain_password, hashed_password)
+        try:
+            return bcrypt.checkpw(plain_password.encode(), hashed_password.encode())
+        except Exception as e:
+            print(f"Password verification error: {e}")
+            return False
     
     @staticmethod
     def generate_otp(length: int = 6) -> str:
