@@ -1,0 +1,7 @@
+﻿Name: John Doe
+Date of Birth: 15-03-1990
+Address: 123 Main St
+PAN: ABCDE1234F
+Aadhar: 123456789012
+Email: john@example.com
+Phone: 9876543210

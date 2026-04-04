@@ -1,0 +1,8 @@
+﻿Name: John Doe
+Email: john@example.com
+Phone: 9876543210
+Amount: 50000
+Card Number: 4532123456789010
+Account Number: 987654321
+Transaction ID: TXN20240403001
+Vendor: Acme Corp

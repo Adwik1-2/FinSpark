@@ -1,0 +1,4952 @@
+{
+  "pipeline_name": "API_Registry_Document.pdf",
+  "runs": [
+    {
+      "timestamp": "2026-04-04T18:53:18.987721",
+      "data": {
+        "results": [
+          {
+            "document_index": 1,
+            "document_name": "API_Registry_Document.pdf",
+            "timestamp": "2026-04-04T13:23:18.976886Z",
+            "result": {
+              "pipeline_summary": {
+                "document_id": "7b4db8a1-6ff2-4a32-bcec-83e60923ad53",
+                "field_count": 36,
+                "mapping_completeness": 0.78,
+                "overall_quality_score": 0.87,
+                "deployment_ready": true,
+                "total_processing_time_ms": 26976.504802703857,
+                "intent": "loan_application",
+                "workflow_type": "loan_processing"
+              },
+              "step_1_document_parsing": {
+                "sections": [
+                  "API Registry Documentation",
+                  " export interface APIField {",
+                  "  name: string",
+                  "  type: 'string' | 'number' | 'email' | 'phone' | 'date' | 'amount' | 'account' | 'id'",
+                  "  required: boolean",
+                  "  description: string",
+                  "  format?: string",
+                  "  validation?: RegExp",
+                  "}",
+                  "export interface APISpec {",
+                  "  id: string",
+                  "  name: string",
+                  "  provider: string",
+                  "  version: string",
+                  "  category: 'Payments' | 'Banking' | 'CRM' | 'Communications' | 'Accounting' | 'ERP' | 'Compliance'",
+                  "  description: string",
+                  "  endpoints: number",
+                  "  inputFields: APIField[]",
+                  "  outputFields: APIField[]",
+                  "  baseUrl: string",
+                  "  endpoint: string",
+                  "  method: 'GET' | 'POST' | 'PUT'",
+                  "  authType: 'API_KEY' | 'OAuth' | 'Bearer'",
+                  "  rateLimits: {",
+                  "    requestsPerSecond: number",
+                  "    requestsPerDay: number",
+                  "  }",
+                  "  documentation: string",
+                  "  logo?: string",
+                  "  status: 'active' | 'maintenance' | 'inactive'",
+                  "}",
+                  "export const apiRegistry: APISpec[] = [",
+                  "  // ============================================",
+                  "  // 1. STRIPE - Payment Processing",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'stripe-payments-v3',",
+                  "    name: 'Stripe',",
+                  "    provider: 'Stripe Inc.',",
+                  "    version: 'v3',",
+                  "    category: 'Payments',",
+                  "    description: 'Payment processing and billing API',",
+                  "    endpoints: 87,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'amount',",
+                  "        type: 'amount',",
+                  "        required: true,",
+                  "        description: 'Amount in cents',",
+                  "      },",
+                  "      {",
+                  "        name: 'currency',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Currency code (usd, inr, eur, gbp)',",
+                  "      },",
+                  "      {",
+                  "        name: 'payment_method',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Payment method ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'customer_id',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Stripe customer ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'description',",
+                  "        type: 'string',",
+                  "",
+                  "        required: false,",
+                  "        description: 'Transaction description',",
+                  "      },",
+                  "      {",
+                  "        name: 'metadata',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Custom metadata (JSON)',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'charge_id',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Unique charge identifier',",
+                  "      },",
+                  "      {",
+                  "        name: 'amount_charged',",
+                  "        type: 'amount',",
+                  "        required: true,",
+                  "        description: 'Amount actually charged',",
+                  "      },",
+                  "      {",
+                  "        name: 'status',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'succeeded, pending, failed',",
+                  "      },",
+                  "      {",
+                  "        name: 'receipt_url',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Receipt URL',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://api.stripe.com',",
+                  "    endpoint: '/v1/charges',",
+                  "    method: 'POST',",
+                  "    authType: 'API_KEY',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 100,",
+                  "      requestsPerDay: 10000000,",
+                  "    },",
+                  "    documentation: 'https://stripe.com/docs/api',",
+                  "    logo: '\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 2. PLAID - Banking & Financial Data",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'plaid-banking-v2',",
+                  "    name: 'Plaid',",
+                  "    provider: 'Plaid Inc.',",
+                  "    version: 'v2',",
+                  "    category: 'Banking',",
+                  "    description: 'Financial data and bank connectivity API',",
+                  "    endpoints: 34,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'access_token',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Plaid access token for user',",
+                  "      },",
+                  "      {",
+                  "        name: 'start_date',",
+                  "        type: 'date',",
+                  "        required: true,",
+                  "        description: 'Start date for transactions (YYYY-MM-DD)',",
+                  "      },",
+                  "      {",
+                  "",
+                  "        name: 'end_date',",
+                  "        type: 'date',",
+                  "        required: true,",
+                  "        description: 'End date for transactions (YYYY-MM-DD)',",
+                  "      },",
+                  "      {",
+                  "        name: 'options',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Additional options (JSON)',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'accounts',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'List of bank accounts',",
+                  "      },",
+                  "      {",
+                  "        name: 'transactions',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'List of transactions',",
+                  "      },",
+                  "      {",
+                  "        name: 'total_transactions',",
+                  "        type: 'number',",
+                  "        required: true,",
+                  "        description: 'Total count of transactions',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://sandbox.plaid.com',",
+                  "    endpoint: '/transactions/get',",
+                  "    method: 'POST',",
+                  "    authType: 'API_KEY',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 50,",
+                  "      requestsPerDay: 1000000,",
+                  "    },",
+                  "    documentation: 'https://plaid.com/docs/api',",
+                  "    logo: '\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 3. SALESFORCE - CRM",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'salesforce-crm-v56',",
+                  "    name: 'Salesforce',",
+                  "    provider: 'Salesforce Inc.',",
+                  "    version: 'v56',",
+                  "    category: 'CRM',",
+                  "    description: 'CRM and customer data platform',",
+                  "    endpoints: 120,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'sobject_type',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Salesforce object type (Account, Contact, Opportunity)',",
+                  "      },",
+                  "      {",
+                  "        name: 'first_name',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Customer first name',",
+                  "      },",
+                  "      {",
+                  "        name: 'last_name',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Customer last name',",
+                  "",
+                  "      },",
+                  "      {",
+                  "        name: 'email',",
+                  "        type: 'email',",
+                  "        required: false,",
+                  "        description: 'Email address',",
+                  "      },",
+                  "      {",
+                  "        name: 'phone',",
+                  "        type: 'phone',",
+                  "        required: false,",
+                  "        description: 'Phone number',",
+                  "      },",
+                  "      {",
+                  "        name: 'company',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Company name',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'id',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Salesforce record ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'created_date',",
+                  "        type: 'date',",
+                  "        required: true,",
+                  "        description: 'Record creation date',",
+                  "      },",
+                  "      {",
+                  "        name: 'status',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Record status',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://your-instance.salesforce.com',",
+                  "    endpoint: '/services/data/v56/sobjects',",
+                  "    method: 'POST',",
+                  "    authType: 'OAuth',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 25,",
+                  "      requestsPerDay: 100000,",
+                  "    },",
+                  "    documentation: 'https://developer.salesforce.com/docs/api',",
+                  "    logo: '\u25a0\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 4. TWILIO - Communications",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'twilio-communications-v2',",
+                  "    name: 'Twilio',",
+                  "    provider: 'Twilio Inc.',",
+                  "    version: 'v2',",
+                  "    category: 'Communications',",
+                  "    description: 'SMS, voice, and messaging API',",
+                  "    endpoints: 45,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'to',",
+                  "        type: 'phone',",
+                  "        required: true,",
+                  "        description: 'Recipient phone number',",
+                  "      },",
+                  "      {",
+                  "        name: 'from',",
+                  "        type: 'phone',",
+                  "",
+                  "        required: true,",
+                  "        description: 'Sender phone number (Twilio)',",
+                  "      },",
+                  "      {",
+                  "        name: 'message',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Message content (max 160 chars)',",
+                  "      },",
+                  "      {",
+                  "        name: 'message_type',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'SMS or MMS',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'sid',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Unique message SID',",
+                  "      },",
+                  "      {",
+                  "        name: 'status',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'queued, sending, sent, failed, delivered',",
+                  "      },",
+                  "      {",
+                  "        name: 'price',",
+                  "        type: 'amount',",
+                  "        required: true,",
+                  "        description: 'Cost of message',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://api.twilio.com',",
+                  "    endpoint: '/2010-04-01/Accounts/{AccountSid}/Messages',",
+                  "    method: 'POST',",
+                  "    authType: 'API_KEY',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 100,",
+                  "      requestsPerDay: 10000000,",
+                  "    },",
+                  "    documentation: 'https://www.twilio.com/docs/sms/api',",
+                  "    logo: '\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 5. HUBSPOT - CRM & Marketing",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'hubspot-crm-v3',",
+                  "    name: 'HubSpot',",
+                  "    provider: 'HubSpot Inc.',",
+                  "    version: 'v3',",
+                  "    category: 'CRM',",
+                  "    description: 'Inbound marketing and sales platform',",
+                  "    endpoints: 78,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'email',",
+                  "        type: 'email',",
+                  "        required: true,",
+                  "        description: 'Contact email address',",
+                  "      },",
+                  "      {",
+                  "        name: 'firstname',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Contact first name',",
+                  "      },",
+                  "      {",
+                  "",
+                  "        name: 'lastname',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Contact last name',",
+                  "      },",
+                  "      {",
+                  "        name: 'phone',",
+                  "        type: 'phone',",
+                  "        required: false,",
+                  "        description: 'Contact phone',",
+                  "      },",
+                  "      {",
+                  "        name: 'company',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Company name',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'id',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'HubSpot contact ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'properties',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Contact properties (JSON)',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://api.hubapi.com',",
+                  "    endpoint: '/crm/v3/objects/contacts',",
+                  "    method: 'POST',",
+                  "    authType: 'Bearer',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 10,",
+                  "      requestsPerDay: 500000,",
+                  "    },",
+                  "    documentation: 'https://developers.hubspot.com/docs/api',",
+                  "    logo: '\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 6. QUICKBOOKS - Accounting",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'quickbooks-accounting-v3',",
+                  "    name: 'QuickBooks',",
+                  "    provider: 'Intuit Inc.',",
+                  "    version: 'v3',",
+                  "    category: 'Accounting',",
+                  "    description: 'Accounting and financial management',",
+                  "    endpoints: 56,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'customer_name',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Customer name',",
+                  "      },",
+                  "      {",
+                  "        name: 'email',",
+                  "        type: 'email',",
+                  "        required: false,",
+                  "        description: 'Customer email',",
+                  "      },",
+                  "      {",
+                  "        name: 'phone',",
+                  "        type: 'phone',",
+                  "        required: false,",
+                  "        description: 'Customer phone',",
+                  "",
+                  "      },",
+                  "      {",
+                  "        name: 'address',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Customer address',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'customer_id',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'QuickBooks customer ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'sync_token',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Sync token for updates',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://quickbooks.api.intuit.com',",
+                  "    endpoint: '/v2/company/{realmId}/customer',",
+                  "    method: 'POST',",
+                  "    authType: 'OAuth',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 10,",
+                  "      requestsPerDay: 200000,",
+                  "    },",
+                  "    documentation: 'https://developer.intuit.com/app/developer/qbo/docs/api',",
+                  "    logo: '\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 7. PAYPAL - Payment Processing",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'paypal-payments-v2',",
+                  "    name: 'PayPal',",
+                  "    provider: 'PayPal Inc.',",
+                  "    version: 'v2',",
+                  "    category: 'Payments',",
+                  "    description: 'Online payment processing',",
+                  "    endpoints: 62,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'amount',",
+                  "        type: 'amount',",
+                  "        required: true,",
+                  "        description: 'Payment amount',",
+                  "      },",
+                  "      {",
+                  "        name: 'currency_code',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Currency (USD, INR, EUR, GBP)',",
+                  "      },",
+                  "      {",
+                  "        name: 'reference_id',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Your reference ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'payment_method',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'PAYPAL, CARD, etc.',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "",
+                  "      {",
+                  "        name: 'id',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'PayPal payment ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'status',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'CREATED, APPROVED, FAILED',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://api.paypal.com',",
+                  "    endpoint: '/v2/checkout/orders',",
+                  "    method: 'POST',",
+                  "    authType: 'OAuth',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 50,",
+                  "      requestsPerDay: 5000000,",
+                  "    },",
+                  "    documentation: 'https://developer.paypal.com/docs/api',",
+                  "    logo: '\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 8. NETSUITE - ERP",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'netsuite-erp-v1',",
+                  "    name: 'NetSuite',",
+                  "    provider: 'Oracle NetSuite',",
+                  "    version: 'v1',",
+                  "    category: 'ERP',",
+                  "    description: 'Enterprise resource planning system',",
+                  "    endpoints: 90,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'record_type',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'salesorder, purchaseorder, invoice, etc.',",
+                  "      },",
+                  "      {",
+                  "        name: 'customer_id',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'NetSuite customer ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'amount',",
+                  "        type: 'amount',",
+                  "        required: false,",
+                  "        description: 'Transaction amount',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'record_id',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'NetSuite record ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'status',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Draft, Pending, Completed, etc.',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://your-account.suiteapis.com',",
+                  "    endpoint: '/services/rest/record/v1/salesorder',",
+                  "",
+                  "    method: 'POST',",
+                  "    authType: 'OAuth',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 10,",
+                  "      requestsPerDay: 100000,",
+                  "    },",
+                  "    documentation: 'https://docs.oracle.com/en/cloud/saas/netsuite',",
+                  "    logo: '\u25a0\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 9. XERO - Cloud Accounting",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'xero-accounting-v2',",
+                  "    name: 'Xero',",
+                  "    provider: 'Xero Limited',",
+                  "    version: 'v2',",
+                  "    category: 'Accounting',",
+                  "    description: 'Cloud accounting software',",
+                  "    endpoints: 48,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'contact_name',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Contact name',",
+                  "      },",
+                  "      {",
+                  "        name: 'email_address',",
+                  "        type: 'email',",
+                  "        required: false,",
+                  "        description: 'Contact email',",
+                  "      },",
+                  "      {",
+                  "        name: 'tax_number',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Tax ID or ABN',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'contact_id',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Xero contact ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'has_attachments',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'true/false',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://api.xero.com',",
+                  "    endpoint: '/api.xro/2.0/Contacts',",
+                  "    method: 'POST',",
+                  "    authType: 'OAuth',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 5,",
+                  "      requestsPerDay: 50000,",
+                  "    },",
+                  "    documentation: 'https://developer.xero.com/documentation',",
+                  "    logo: '\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 10. KYC PRO - Compliance & Verification",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'kyc-pro-compliance-v1',",
+                  "",
+                  "    name: 'KYC Pro',",
+                  "    provider: 'KYC Pro Compliance',",
+                  "    version: 'v1',",
+                  "    category: 'Compliance',",
+                  "    description: 'KYC verification and compliance checking',",
+                  "    endpoints: 35,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'full_name',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Full legal name',",
+                  "      },",
+                  "      {",
+                  "        name: 'date_of_birth',",
+                  "        type: 'date',",
+                  "        required: true,",
+                  "        description: 'DOB (YYYY-MM-DD)',",
+                  "      },",
+                  "      {",
+                  "        name: 'government_id',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Passport, ID, or License number',",
+                  "      },",
+                  "      {",
+                  "        name: 'country',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Country code (ISO 3166)',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'kyc_status',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'VERIFIED, FAILED, REVIEW',",
+                  "      },",
+                  "      {",
+                  "        name: 'compliance_score',",
+                  "        type: 'number',",
+                  "        required: true,",
+                  "        description: 'Score 0-100',",
+                  "      },",
+                  "      {",
+                  "        name: 'pep_match',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'PEP screening result',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://api.kycpro.com',",
+                  "    endpoint: '/v1/verify',",
+                  "    method: 'POST',",
+                  "    authType: 'API_KEY',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 20,",
+                  "      requestsPerDay: 500000,",
+                  "    },",
+                  "    documentation: 'https://kycpro.com/api/docs',",
+                  "    logo: '\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "]",
+                  ""
+                ],
+                "tables": [],
+                "extraction_quality_score": 0.86,
+                "processing_time_ms": 0.14829635620117188
+              },
+              "step_2_field_extraction": {
+                "extracted_fields": [
+                  {
+                    "field_name": "name",
+                    "value": "string",
+                    "confidence": 0.81,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "required",
+                    "value": "boolean",
+                    "confidence": 0.87,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "description",
+                    "value": "string",
+                    "confidence": 0.82,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "format?",
+                    "value": "string",
+                    "confidence": 0.88,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "validation?",
+                    "value": "RegExp",
+                    "confidence": 0.87,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "provider",
+                    "value": "string",
+                    "confidence": 0.86,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "category",
+                    "value": "'Payments' | 'Banking' | 'CRM' | 'Communications' | 'Accounting' | 'ERP' | 'Compliance'",
+                    "confidence": 0.83,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "endpoints",
+                    "value": "number",
+                    "confidence": 0.81,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "inputFields",
+                    "value": "APIField[]",
+                    "confidence": 0.82,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "outputFields",
+                    "value": "APIField[]",
+                    "confidence": 0.88,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "baseUrl",
+                    "value": "string",
+                    "confidence": 0.84,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "endpoint",
+                    "value": "string",
+                    "confidence": 0.86,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "method",
+                    "value": "'GET' | 'POST' | 'PUT'",
+                    "confidence": 0.9,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "authType",
+                    "value": "'API_KEY' | 'OAuth' | 'Bearer'",
+                    "confidence": 0.89,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "rateLimits",
+                    "value": "{",
+                    "confidence": 0.83,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "requestsPerSecond",
+                    "value": "number",
+                    "confidence": 0.9,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "requestsPerDay",
+                    "value": "number",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "documentation",
+                    "value": "string",
+                    "confidence": 0.83,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "logo?",
+                    "value": "string",
+                    "confidence": 0.86,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "status",
+                    "value": "'active' | 'maintenance' | 'inactive'",
+                    "confidence": 0.8,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "export const apiRegistry",
+                    "value": "APISpec[] = [",
+                    "confidence": 0.9,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "type",
+                    "value": "'amount',",
+                    "confidence": 0.87,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "name: 'customer_id'",
+                    "value": "",
+                    "confidence": 0.8,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "logo",
+                    "value": "'\u25a0',",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "name: 'start_date'",
+                    "value": "",
+                    "confidence": 0.8,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "name: 'end_date'",
+                    "value": "",
+                    "confidence": 0.8,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "description: 'Customer first name'",
+                    "value": "",
+                    "confidence": 0.8,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "description: 'Customer last name'",
+                    "value": "",
+                    "confidence": 0.8,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "name: 'created_date'",
+                    "value": "",
+                    "confidence": 0.8,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "name: 'customer_name'",
+                    "value": "",
+                    "confidence": 0.8,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "description: 'Customer name'",
+                    "value": "",
+                    "confidence": 0.8,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "description: 'Customer email'",
+                    "value": "",
+                    "confidence": 0.8,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "description: 'Customer phone'",
+                    "value": "",
+                    "confidence": 0.8,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "description: 'Customer address'",
+                    "value": "",
+                    "confidence": 0.8,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "endpoint: '/v2/company/{realmId}/customer'",
+                    "value": "",
+                    "confidence": 0.8,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "name: 'date_of_birth'",
+                    "value": "",
+                    "confidence": 0.8,
+                    "data_type": "string"
+                  }
+                ],
+                "missing_fields": {
+                  "mandatory": [],
+                  "optional": []
+                },
+                "intent": "loan_application",
+                "intent_confidence": 0.9,
+                "quality_metrics": {
+                  "extraction_completeness": 0.85
+                },
+                "processing_time_ms": 1.8191337585449219
+              },
+              "step_3_api_mapping": {
+                "mappings": [
+                  {
+                    "source_field": "name",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "name",
+                    "match_confidence": 0.7,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Matched keyword: name"
+                  },
+                  {
+                    "source_field": "required",
+                    "target_api_id": "stripe",
+                    "target_field": "required",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "description",
+                    "target_api_id": "stripe",
+                    "target_field": "description",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "format?",
+                    "target_api_id": "stripe",
+                    "target_field": "format?",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "validation?",
+                    "target_api_id": "stripe",
+                    "target_field": "validation?",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "provider",
+                    "target_api_id": "stripe",
+                    "target_field": "provider",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "category",
+                    "target_api_id": "stripe",
+                    "target_field": "category",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "endpoints",
+                    "target_api_id": "stripe",
+                    "target_field": "endpoints",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "inputFields",
+                    "target_api_id": "stripe",
+                    "target_field": "inputfields",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "outputFields",
+                    "target_api_id": "stripe",
+                    "target_field": "outputfields",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "baseUrl",
+                    "target_api_id": "stripe",
+                    "target_field": "baseurl",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "endpoint",
+                    "target_api_id": "stripe",
+                    "target_field": "endpoint",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "method",
+                    "target_api_id": "stripe",
+                    "target_field": "method",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "authType",
+                    "target_api_id": "stripe",
+                    "target_field": "authtype",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "rateLimits",
+                    "target_api_id": "stripe",
+                    "target_field": "ratelimits",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "requestsPerSecond",
+                    "target_api_id": "stripe",
+                    "target_field": "requestspersecond",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "requestsPerDay",
+                    "target_api_id": "stripe",
+                    "target_field": "requestsperday",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "documentation",
+                    "target_api_id": "stripe",
+                    "target_field": "documentation",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "logo?",
+                    "target_api_id": "stripe",
+                    "target_field": "logo?",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "status",
+                    "target_api_id": "stripe",
+                    "target_field": "status",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "export const apiRegistry",
+                    "target_api_id": "stripe",
+                    "target_field": "export_const_apiregistry",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "type",
+                    "target_api_id": "stripe",
+                    "target_field": "type",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "name: 'customer_id'",
+                    "target_api_id": "salesforce",
+                    "target_field": "name:_'customer_id'",
+                    "match_confidence": 0.7,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Matched keyword: customer"
+                  },
+                  {
+                    "source_field": "logo",
+                    "target_api_id": "stripe",
+                    "target_field": "logo",
+                    "match_confidence": 0.5,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default to stripe"
+                  },
+                  {
+                    "source_field": "name: 'start_date'",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "name:_'start_date'",
+                    "match_confidence": 0.7,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Matched keyword: name"
+                  },
+                  {
+                    "source_field": "name: 'end_date'",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "name:_'end_date'",
+                    "match_confidence": 0.7,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Matched keyword: name"
+                  },
+                  {
+                    "source_field": "description: 'Customer first name'",
+                    "target_api_id": "salesforce",
+                    "target_field": "description:_'customer_first_name'",
+                    "match_confidence": 0.7,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Matched keyword: customer"
+                  },
+                  {
+                    "source_field": "description: 'Customer last name'",
+                    "target_api_id": "salesforce",
+                    "target_field": "description:_'customer_last_name'",
+                    "match_confidence": 0.7,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Matched keyword: customer"
+                  },
+                  {
+                    "source_field": "name: 'created_date'",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "name:_'created_date'",
+                    "match_confidence": 0.7,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Matched keyword: name"
+                  },
+                  {
+                    "source_field": "name: 'customer_name'",
+                    "target_api_id": "salesforce",
+                    "target_field": "name:_'customer_name'",
+                    "match_confidence": 0.7,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Matched keyword: customer"
+                  },
+                  {
+                    "source_field": "description: 'Customer name'",
+                    "target_api_id": "salesforce",
+                    "target_field": "description:_'customer_name'",
+                    "match_confidence": 0.7,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Matched keyword: customer"
+                  },
+                  {
+                    "source_field": "description: 'Customer email'",
+                    "target_api_id": "salesforce",
+                    "target_field": "description:_'customer_email'",
+                    "match_confidence": 0.7,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Matched keyword: customer"
+                  },
+                  {
+                    "source_field": "description: 'Customer phone'",
+                    "target_api_id": "salesforce",
+                    "target_field": "phone_number",
+                    "match_confidence": 0.7,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Matched keyword: customer"
+                  },
+                  {
+                    "source_field": "description: 'Customer address'",
+                    "target_api_id": "salesforce",
+                    "target_field": "description:_'customer_address'",
+                    "match_confidence": 0.7,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Matched keyword: customer"
+                  },
+                  {
+                    "source_field": "endpoint: '/v2/company/{realmId}/customer'",
+                    "target_api_id": "salesforce",
+                    "target_field": "endpoint:_'/v2/company/{realmid}/customer'",
+                    "match_confidence": 0.7,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Matched keyword: customer"
+                  },
+                  {
+                    "source_field": "name: 'date_of_birth'",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "name:_'date_of_birth'",
+                    "match_confidence": 0.7,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Matched keyword: name"
+                  }
+                ],
+                "available_apis": [
+                  {
+                    "api_id": "stripe",
+                    "description": "Payment processing and billing API",
+                    "keywords": [
+                      "payment",
+                      "billing",
+                      "charge",
+                      "card",
+                      "transaction"
+                    ],
+                    "is_selected": false
+                  },
+                  {
+                    "api_id": "plaid",
+                    "description": "Financial data and bank connectivity",
+                    "keywords": [
+                      "account",
+                      "bank",
+                      "balance",
+                      "transaction",
+                      "credentials"
+                    ],
+                    "is_selected": false
+                  },
+                  {
+                    "api_id": "salesforce",
+                    "description": "CRM and customer data platform",
+                    "keywords": [
+                      "customer",
+                      "contact",
+                      "opportunity",
+                      "lead",
+                      "account"
+                    ],
+                    "is_selected": false
+                  },
+                  {
+                    "api_id": "quickbooks",
+                    "description": "Accounting and financial management",
+                    "keywords": [
+                      "invoice",
+                      "expense",
+                      "bill",
+                      "account",
+                      "journal"
+                    ],
+                    "is_selected": false
+                  },
+                  {
+                    "api_id": "twilio",
+                    "description": "SMS, voice, and messaging API",
+                    "keywords": [
+                      "message",
+                      "sms",
+                      "phone",
+                      "call",
+                      "notification"
+                    ],
+                    "is_selected": false
+                  },
+                  {
+                    "api_id": "hubspot",
+                    "description": "Inbound marketing and sales platform",
+                    "keywords": [
+                      "contact",
+                      "deal",
+                      "company",
+                      "engagement",
+                      "ticket"
+                    ],
+                    "is_selected": false
+                  },
+                  {
+                    "api_id": "paypal",
+                    "description": "Online payment processing",
+                    "keywords": [
+                      "payment",
+                      "transaction",
+                      "sale",
+                      "refund",
+                      "authorized"
+                    ],
+                    "is_selected": false
+                  },
+                  {
+                    "api_id": "netsuite",
+                    "description": "Enterprise resource planning system",
+                    "keywords": [
+                      "order",
+                      "customer",
+                      "inventory",
+                      "transaction",
+                      "subsidiary"
+                    ],
+                    "is_selected": false
+                  },
+                  {
+                    "api_id": "xero",
+                    "description": "Cloud accounting software",
+                    "keywords": [
+                      "invoice",
+                      "contact",
+                      "expense",
+                      "bill",
+                      "account"
+                    ],
+                    "is_selected": false
+                  },
+                  {
+                    "api_id": "kyc-pro",
+                    "description": "Identity verification and KYC compliance API",
+                    "keywords": [
+                      "identity",
+                      "verification",
+                      "kyc",
+                      "compliance",
+                      "name",
+                      "aadhar",
+                      "pan",
+                      "address",
+                      "dob"
+                    ],
+                    "is_selected": true
+                  }
+                ],
+                "selected_api": "kyc-pro",
+                "mapping_strategy": "ai_based",
+                "ai_status": "enabled",
+                "ai_analysis": [
+                  {
+                    "field_name": "name",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.7,
+                    "reasoning": "Matched keyword: name",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "required",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "description",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "format?",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "validation?",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "provider",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "category",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "endpoints",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "inputFields",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "outputFields",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "baseUrl",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "endpoint",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "method",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "authType",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "rateLimits",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "requestsPerSecond",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "requestsPerDay",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "documentation",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "logo?",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "status",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "export const apiRegistry",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "type",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "name: 'customer_id'",
+                    "detected_api": "salesforce",
+                    "ai_confidence": 0.7,
+                    "reasoning": "Matched keyword: customer",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "logo",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.5,
+                    "reasoning": "Default to stripe",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "name: 'start_date'",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.7,
+                    "reasoning": "Matched keyword: name",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "name: 'end_date'",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.7,
+                    "reasoning": "Matched keyword: name",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "description: 'Customer first name'",
+                    "detected_api": "salesforce",
+                    "ai_confidence": 0.7,
+                    "reasoning": "Matched keyword: customer",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "description: 'Customer last name'",
+                    "detected_api": "salesforce",
+                    "ai_confidence": 0.7,
+                    "reasoning": "Matched keyword: customer",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "name: 'created_date'",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.7,
+                    "reasoning": "Matched keyword: name",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "name: 'customer_name'",
+                    "detected_api": "salesforce",
+                    "ai_confidence": 0.7,
+                    "reasoning": "Matched keyword: customer",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "description: 'Customer name'",
+                    "detected_api": "salesforce",
+                    "ai_confidence": 0.7,
+                    "reasoning": "Matched keyword: customer",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "description: 'Customer email'",
+                    "detected_api": "salesforce",
+                    "ai_confidence": 0.7,
+                    "reasoning": "Matched keyword: customer",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "description: 'Customer phone'",
+                    "detected_api": "salesforce",
+                    "ai_confidence": 0.7,
+                    "reasoning": "Matched keyword: customer",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "description: 'Customer address'",
+                    "detected_api": "salesforce",
+                    "ai_confidence": 0.7,
+                    "reasoning": "Matched keyword: customer",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "endpoint: '/v2/company/{realmId}/customer'",
+                    "detected_api": "salesforce",
+                    "ai_confidence": 0.7,
+                    "reasoning": "Matched keyword: customer",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "name: 'date_of_birth'",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.7,
+                    "reasoning": "Matched keyword: name",
+                    "transformation": null
+                  }
+                ],
+                "mapping_statistics": {
+                  "mapped_fields": 36,
+                  "perfect_matches": 21,
+                  "good_matches": 14,
+                  "matches_with_transformation": 0,
+                  "average_confidence": 0.86,
+                  "overall_mapping_completeness": 0.8
+                },
+                "processing_time_ms": 26974.45845603943,
+                "recommendations": [
+                  "Using kyc-pro for this workflow"
+                ]
+              },
+              "step_4_simulation": {
+                "status": "SUCCESS",
+                "api_call_results": [
+                  {
+                    "api_id": "loan-api",
+                    "status": "SUCCESS",
+                    "response": {
+                      "response_time_ms": 120
+                    }
+                  }
+                ],
+                "deployment_readiness": {
+                  "is_ready": true,
+                  "readiness_score": 0.9,
+                  "checklist": {
+                    "fields_present": true,
+                    "mapping_complete": true,
+                    "api_success": true
+                  },
+                  "issues": [],
+                  "warnings": []
+                },
+                "simulation_logs": [
+                  {
+                    "level": "INFO",
+                    "message": "Simulation started"
+                  },
+                  {
+                    "level": "SUCCESS",
+                    "message": "API call successful"
+                  }
+                ],
+                "duration_ms": 0.00762939453125
+              }
+            },
+            "detected_apis": [
+              {
+                "api_id": "kyc-pro",
+                "name": "KYC & Identity Verification",
+                "category": "Compliance/Verification",
+                "confidence": 0.57,
+                "matched_keywords": [
+                  "pan",
+                  "kyc verification",
+                  "first_name"
+                ],
+                "priority": 1,
+                "fields": [
+                  "first_name",
+                  "last_name",
+                  "date_of_birth",
+                  "address",
+                  "pan_number",
+                  "aadhar_number",
+                  "phone_number",
+                  "email"
+                ],
+                "field_matches": 5,
+                "requirement_matches": 2
+              },
+              {
+                "api_id": "loan-origination",
+                "name": "Loan Origination Platform",
+                "category": "Lending",
+                "confidence": 0.29,
+                "matched_keywords": [
+                  "loan_type",
+                  "customer_id"
+                ],
+                "priority": 1,
+                "fields": [
+                  "loan_amount",
+                  "loan_type",
+                  "tenure",
+                  "interest_rate",
+                  "customer_id"
+                ],
+                "field_matches": 2,
+                "requirement_matches": 0
+              },
+              {
+                "api_id": "bank-disbursal",
+                "name": "Bank Disbursal & UPI",
+                "category": "Banking/Payments",
+                "confidence": 0.25,
+                "matched_keywords": [
+                  "account_holder_name",
+                  "bank_name"
+                ],
+                "priority": 1,
+                "fields": [
+                  "account_number",
+                  "ifsc_code",
+                  "account_holder_name",
+                  "bank_name",
+                  "upi_id",
+                  "loan_amount"
+                ],
+                "field_matches": 2,
+                "requirement_matches": 0
+              },
+              {
+                "api_id": "upi-gateway",
+                "name": "UPI Payment Gateway",
+                "category": "Payments",
+                "confidence": 0.25,
+                "matched_keywords": [
+                  "beneficiary_name"
+                ],
+                "priority": 1,
+                "fields": [
+                  "upi_id",
+                  "amount",
+                  "transaction_id",
+                  "beneficiary_name"
+                ],
+                "field_matches": 1,
+                "requirement_matches": 0
+              },
+              {
+                "api_id": "salesforce",
+                "name": "CRM Platform",
+                "category": "CRM",
+                "confidence": 0.6,
+                "matched_keywords": [
+                  "customer_id",
+                  "contact_name",
+                  "email"
+                ],
+                "priority": 2,
+                "fields": [
+                  "customer_id",
+                  "contact_name",
+                  "email",
+                  "phone_number"
+                ],
+                "field_matches": 3,
+                "requirement_matches": 0
+              },
+              {
+                "api_id": "cibil",
+                "name": "CIBIL Credit Check",
+                "category": "Credit/Risk",
+                "confidence": 0.33,
+                "matched_keywords": [
+                  "full_name",
+                  "date_of_birth"
+                ],
+                "priority": 2,
+                "fields": [
+                  "full_name",
+                  "pan_number",
+                  "date_of_birth",
+                  "credit_score"
+                ],
+                "field_matches": 2,
+                "requirement_matches": 0
+              },
+              {
+                "api_id": "esign",
+                "name": "e-Sign Integration",
+                "category": "Document Signing",
+                "confidence": 0.25,
+                "matched_keywords": [
+                  "signer_name"
+                ],
+                "priority": 2,
+                "fields": [
+                  "document_id",
+                  "signer_name",
+                  "signature_date"
+                ],
+                "field_matches": 1,
+                "requirement_matches": 0
+              },
+              {
+                "api_id": "twilio",
+                "name": "SMS & Notifications",
+                "category": "Communication",
+                "confidence": 0.33,
+                "matched_keywords": [
+                  "sms",
+                  "notification_type"
+                ],
+                "priority": 3,
+                "fields": [
+                  "phone_number",
+                  "message",
+                  "notification_type"
+                ],
+                "field_matches": 1,
+                "requirement_matches": 1
+              }
+            ],
+            "field_to_api_mapping": {
+              "name": [
+                "kyc-pro",
+                "salesforce"
+              ],
+              "required": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "description": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "format?": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "validation?": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "provider": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "category": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "endpoints": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "inputfields": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "outputfields": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "baseurl": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "endpoint": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "method": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "authtype": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "ratelimits": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "requestspersecond": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "requestsperday": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "documentation": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "logo?": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "status": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "export_const_apiregistry": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "type": [
+                "twilio",
+                "loan-origination"
+              ],
+              "name:_'customer_id'": [
+                "salesforce",
+                "loan-origination"
+              ],
+              "logo": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "name:_'start_date'": [
+                "kyc-pro",
+                "salesforce"
+              ],
+              "name:_'end_date'": [
+                "kyc-pro",
+                "salesforce"
+              ],
+              "description:_'customer_first_name'": [
+                "kyc-pro"
+              ],
+              "description:_'customer_last_name'": [
+                "kyc-pro"
+              ],
+              "name:_'created_date'": [
+                "kyc-pro",
+                "salesforce"
+              ],
+              "name:_'customer_name'": [
+                "kyc-pro",
+                "salesforce"
+              ],
+              "description:_'customer_name'": [
+                "kyc-pro",
+                "salesforce"
+              ],
+              "description:_'customer_email'": [
+                "kyc-pro",
+                "salesforce"
+              ],
+              "description:_'customer_phone'": [
+                "twilio",
+                "salesforce",
+                "kyc-pro"
+              ],
+              "description:_'customer_address'": [
+                "kyc-pro"
+              ],
+              "endpoint:_'/v2/company/{realmid}/customer'": [
+                "kyc-pro",
+                "salesforce"
+              ],
+              "name:_'date_of_birth'": [
+                "kyc-pro",
+                "cibil"
+              ]
+            },
+            "workflow_requirements": [
+              "// 1. STRIPE - Payment Processing",
+              "id: 'stripe-payments-v3',",
+              "// 2. PLAID - Banking & Financial Data",
+              "id: 'plaid-banking-v2',",
+              "description: 'Start date for transactions (YYYY-MM-DD)',",
+              "description: 'End date for transactions (YYYY-MM-DD)',",
+              "// 3. SALESFORCE - CRM",
+              "id: 'salesforce-crm-v56',",
+              "baseUrl: 'https://your-instance.salesforce.com',",
+              "// 4. TWILIO - Communications"
+            ],
+            "auto_detected": true
+          }
+        ],
+        "summary": {
+          "total_documents": 1,
+          "status": "completed"
+        },
+        "intelligent_analysis": {
+          "apis_detected": 8,
+          "detected_apis": [
+            {
+              "api_id": "kyc-pro",
+              "name": "KYC & Identity Verification",
+              "category": "Compliance/Verification",
+              "confidence": 0.57,
+              "matched_keywords": [
+                "pan",
+                "kyc verification",
+                "first_name"
+              ],
+              "priority": 1,
+              "fields": [
+                "first_name",
+                "last_name",
+                "date_of_birth",
+                "address",
+                "pan_number",
+                "aadhar_number",
+                "phone_number",
+                "email"
+              ],
+              "field_matches": 5,
+              "requirement_matches": 2
+            },
+            {
+              "api_id": "loan-origination",
+              "name": "Loan Origination Platform",
+              "category": "Lending",
+              "confidence": 0.29,
+              "matched_keywords": [
+                "loan_type",
+                "customer_id"
+              ],
+              "priority": 1,
+              "fields": [
+                "loan_amount",
+                "loan_type",
+                "tenure",
+                "interest_rate",
+                "customer_id"
+              ],
+              "field_matches": 2,
+              "requirement_matches": 0
+            },
+            {
+              "api_id": "bank-disbursal",
+              "name": "Bank Disbursal & UPI",
+              "category": "Banking/Payments",
+              "confidence": 0.25,
+              "matched_keywords": [
+                "account_holder_name",
+                "bank_name"
+              ],
+              "priority": 1,
+              "fields": [
+                "account_number",
+                "ifsc_code",
+                "account_holder_name",
+                "bank_name",
+                "upi_id",
+                "loan_amount"
+              ],
+              "field_matches": 2,
+              "requirement_matches": 0
+            },
+            {
+              "api_id": "upi-gateway",
+              "name": "UPI Payment Gateway",
+              "category": "Payments",
+              "confidence": 0.25,
+              "matched_keywords": [
+                "beneficiary_name"
+              ],
+              "priority": 1,
+              "fields": [
+                "upi_id",
+                "amount",
+                "transaction_id",
+                "beneficiary_name"
+              ],
+              "field_matches": 1,
+              "requirement_matches": 0
+            },
+            {
+              "api_id": "salesforce",
+              "name": "CRM Platform",
+              "category": "CRM",
+              "confidence": 0.6,
+              "matched_keywords": [
+                "customer_id",
+                "contact_name",
+                "email"
+              ],
+              "priority": 2,
+              "fields": [
+                "customer_id",
+                "contact_name",
+                "email",
+                "phone_number"
+              ],
+              "field_matches": 3,
+              "requirement_matches": 0
+            },
+            {
+              "api_id": "cibil",
+              "name": "CIBIL Credit Check",
+              "category": "Credit/Risk",
+              "confidence": 0.33,
+              "matched_keywords": [
+                "full_name",
+                "date_of_birth"
+              ],
+              "priority": 2,
+              "fields": [
+                "full_name",
+                "pan_number",
+                "date_of_birth",
+                "credit_score"
+              ],
+              "field_matches": 2,
+              "requirement_matches": 0
+            },
+            {
+              "api_id": "esign",
+              "name": "e-Sign Integration",
+              "category": "Document Signing",
+              "confidence": 0.25,
+              "matched_keywords": [
+                "signer_name"
+              ],
+              "priority": 2,
+              "fields": [
+                "document_id",
+                "signer_name",
+                "signature_date"
+              ],
+              "field_matches": 1,
+              "requirement_matches": 0
+            },
+            {
+              "api_id": "twilio",
+              "name": "SMS & Notifications",
+              "category": "Communication",
+              "confidence": 0.33,
+              "matched_keywords": [
+                "sms",
+                "notification_type"
+              ],
+              "priority": 3,
+              "fields": [
+                "phone_number",
+                "message",
+                "notification_type"
+              ],
+              "field_matches": 1,
+              "requirement_matches": 1
+            }
+          ],
+          "field_mappings_auto_generated": {
+            "name": [
+              "kyc-pro",
+              "salesforce"
+            ],
+            "required": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "description": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "format?": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "validation?": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "provider": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "category": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "endpoints": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "inputfields": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "outputfields": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "baseurl": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "endpoint": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "method": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "authtype": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "ratelimits": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "requestspersecond": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "requestsperday": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "documentation": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "logo?": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "status": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "export_const_apiregistry": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "type": [
+              "twilio",
+              "loan-origination"
+            ],
+            "name:_'customer_id'": [
+              "salesforce",
+              "loan-origination"
+            ],
+            "logo": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "name:_'start_date'": [
+              "kyc-pro",
+              "salesforce"
+            ],
+            "name:_'end_date'": [
+              "kyc-pro",
+              "salesforce"
+            ],
+            "description:_'customer_first_name'": [
+              "kyc-pro"
+            ],
+            "description:_'customer_last_name'": [
+              "kyc-pro"
+            ],
+            "name:_'created_date'": [
+              "kyc-pro",
+              "salesforce"
+            ],
+            "name:_'customer_name'": [
+              "kyc-pro",
+              "salesforce"
+            ],
+            "description:_'customer_name'": [
+              "kyc-pro",
+              "salesforce"
+            ],
+            "description:_'customer_email'": [
+              "kyc-pro",
+              "salesforce"
+            ],
+            "description:_'customer_phone'": [
+              "twilio",
+              "salesforce",
+              "kyc-pro"
+            ],
+            "description:_'customer_address'": [
+              "kyc-pro"
+            ],
+            "endpoint:_'/v2/company/{realmid}/customer'": [
+              "kyc-pro",
+              "salesforce"
+            ],
+            "name:_'date_of_birth'": [
+              "kyc-pro",
+              "cibil"
+            ]
+          },
+          "workflow_steps": [
+            "// 1. STRIPE - Payment Processing",
+            "id: 'stripe-payments-v3',",
+            "// 2. PLAID - Banking & Financial Data",
+            "id: 'plaid-banking-v2',",
+            "description: 'Start date for transactions (YYYY-MM-DD)',",
+            "description: 'End date for transactions (YYYY-MM-DD)',",
+            "// 3. SALESFORCE - CRM",
+            "id: 'salesforce-crm-v56',",
+            "baseUrl: 'https://your-instance.salesforce.com',",
+            "// 4. TWILIO - Communications"
+          ],
+          "automation_level": "FULL_AUTO"
+        }
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T20:04:12.996269",
+      "data": {
+        "results": [
+          {
+            "document_index": 1,
+            "document_name": "API_Registry_Document.pdf",
+            "timestamp": "2026-04-04T14:34:12.945999Z",
+            "result": {
+              "pipeline_summary": {
+                "document_id": "7eb1c032-a31d-4e3f-80e7-b0721e4df1bf",
+                "field_count": 36,
+                "mapping_completeness": 0.87,
+                "overall_quality_score": 0.89,
+                "deployment_ready": true,
+                "total_processing_time_ms": 31256.113529205322,
+                "intent": "loan_application",
+                "workflow_type": "loan_processing"
+              },
+              "step_1_document_parsing": {
+                "sections": [
+                  "API Registry Documentation",
+                  " export interface APIField {",
+                  "  name: string",
+                  "  type: 'string' | 'number' | 'email' | 'phone' | 'date' | 'amount' | 'account' | 'id'",
+                  "  required: boolean",
+                  "  description: string",
+                  "  format?: string",
+                  "  validation?: RegExp",
+                  "}",
+                  "export interface APISpec {",
+                  "  id: string",
+                  "  name: string",
+                  "  provider: string",
+                  "  version: string",
+                  "  category: 'Payments' | 'Banking' | 'CRM' | 'Communications' | 'Accounting' | 'ERP' | 'Compliance'",
+                  "  description: string",
+                  "  endpoints: number",
+                  "  inputFields: APIField[]",
+                  "  outputFields: APIField[]",
+                  "  baseUrl: string",
+                  "  endpoint: string",
+                  "  method: 'GET' | 'POST' | 'PUT'",
+                  "  authType: 'API_KEY' | 'OAuth' | 'Bearer'",
+                  "  rateLimits: {",
+                  "    requestsPerSecond: number",
+                  "    requestsPerDay: number",
+                  "  }",
+                  "  documentation: string",
+                  "  logo?: string",
+                  "  status: 'active' | 'maintenance' | 'inactive'",
+                  "}",
+                  "export const apiRegistry: APISpec[] = [",
+                  "  // ============================================",
+                  "  // 1. STRIPE - Payment Processing",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'stripe-payments-v3',",
+                  "    name: 'Stripe',",
+                  "    provider: 'Stripe Inc.',",
+                  "    version: 'v3',",
+                  "    category: 'Payments',",
+                  "    description: 'Payment processing and billing API',",
+                  "    endpoints: 87,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'amount',",
+                  "        type: 'amount',",
+                  "        required: true,",
+                  "        description: 'Amount in cents',",
+                  "      },",
+                  "      {",
+                  "        name: 'currency',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Currency code (usd, inr, eur, gbp)',",
+                  "      },",
+                  "      {",
+                  "        name: 'payment_method',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Payment method ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'customer_id',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Stripe customer ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'description',",
+                  "        type: 'string',",
+                  "",
+                  "        required: false,",
+                  "        description: 'Transaction description',",
+                  "      },",
+                  "      {",
+                  "        name: 'metadata',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Custom metadata (JSON)',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'charge_id',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Unique charge identifier',",
+                  "      },",
+                  "      {",
+                  "        name: 'amount_charged',",
+                  "        type: 'amount',",
+                  "        required: true,",
+                  "        description: 'Amount actually charged',",
+                  "      },",
+                  "      {",
+                  "        name: 'status',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'succeeded, pending, failed',",
+                  "      },",
+                  "      {",
+                  "        name: 'receipt_url',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Receipt URL',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://api.stripe.com',",
+                  "    endpoint: '/v1/charges',",
+                  "    method: 'POST',",
+                  "    authType: 'API_KEY',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 100,",
+                  "      requestsPerDay: 10000000,",
+                  "    },",
+                  "    documentation: 'https://stripe.com/docs/api',",
+                  "    logo: '\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 2. PLAID - Banking & Financial Data",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'plaid-banking-v2',",
+                  "    name: 'Plaid',",
+                  "    provider: 'Plaid Inc.',",
+                  "    version: 'v2',",
+                  "    category: 'Banking',",
+                  "    description: 'Financial data and bank connectivity API',",
+                  "    endpoints: 34,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'access_token',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Plaid access token for user',",
+                  "      },",
+                  "      {",
+                  "        name: 'start_date',",
+                  "        type: 'date',",
+                  "        required: true,",
+                  "        description: 'Start date for transactions (YYYY-MM-DD)',",
+                  "      },",
+                  "      {",
+                  "",
+                  "        name: 'end_date',",
+                  "        type: 'date',",
+                  "        required: true,",
+                  "        description: 'End date for transactions (YYYY-MM-DD)',",
+                  "      },",
+                  "      {",
+                  "        name: 'options',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Additional options (JSON)',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'accounts',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'List of bank accounts',",
+                  "      },",
+                  "      {",
+                  "        name: 'transactions',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'List of transactions',",
+                  "      },",
+                  "      {",
+                  "        name: 'total_transactions',",
+                  "        type: 'number',",
+                  "        required: true,",
+                  "        description: 'Total count of transactions',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://sandbox.plaid.com',",
+                  "    endpoint: '/transactions/get',",
+                  "    method: 'POST',",
+                  "    authType: 'API_KEY',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 50,",
+                  "      requestsPerDay: 1000000,",
+                  "    },",
+                  "    documentation: 'https://plaid.com/docs/api',",
+                  "    logo: '\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 3. SALESFORCE - CRM",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'salesforce-crm-v56',",
+                  "    name: 'Salesforce',",
+                  "    provider: 'Salesforce Inc.',",
+                  "    version: 'v56',",
+                  "    category: 'CRM',",
+                  "    description: 'CRM and customer data platform',",
+                  "    endpoints: 120,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'sobject_type',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Salesforce object type (Account, Contact, Opportunity)',",
+                  "      },",
+                  "      {",
+                  "        name: 'first_name',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Customer first name',",
+                  "      },",
+                  "      {",
+                  "        name: 'last_name',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Customer last name',",
+                  "",
+                  "      },",
+                  "      {",
+                  "        name: 'email',",
+                  "        type: 'email',",
+                  "        required: false,",
+                  "        description: 'Email address',",
+                  "      },",
+                  "      {",
+                  "        name: 'phone',",
+                  "        type: 'phone',",
+                  "        required: false,",
+                  "        description: 'Phone number',",
+                  "      },",
+                  "      {",
+                  "        name: 'company',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Company name',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'id',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Salesforce record ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'created_date',",
+                  "        type: 'date',",
+                  "        required: true,",
+                  "        description: 'Record creation date',",
+                  "      },",
+                  "      {",
+                  "        name: 'status',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Record status',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://your-instance.salesforce.com',",
+                  "    endpoint: '/services/data/v56/sobjects',",
+                  "    method: 'POST',",
+                  "    authType: 'OAuth',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 25,",
+                  "      requestsPerDay: 100000,",
+                  "    },",
+                  "    documentation: 'https://developer.salesforce.com/docs/api',",
+                  "    logo: '\u25a0\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 4. TWILIO - Communications",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'twilio-communications-v2',",
+                  "    name: 'Twilio',",
+                  "    provider: 'Twilio Inc.',",
+                  "    version: 'v2',",
+                  "    category: 'Communications',",
+                  "    description: 'SMS, voice, and messaging API',",
+                  "    endpoints: 45,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'to',",
+                  "        type: 'phone',",
+                  "        required: true,",
+                  "        description: 'Recipient phone number',",
+                  "      },",
+                  "      {",
+                  "        name: 'from',",
+                  "        type: 'phone',",
+                  "",
+                  "        required: true,",
+                  "        description: 'Sender phone number (Twilio)',",
+                  "      },",
+                  "      {",
+                  "        name: 'message',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Message content (max 160 chars)',",
+                  "      },",
+                  "      {",
+                  "        name: 'message_type',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'SMS or MMS',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'sid',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Unique message SID',",
+                  "      },",
+                  "      {",
+                  "        name: 'status',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'queued, sending, sent, failed, delivered',",
+                  "      },",
+                  "      {",
+                  "        name: 'price',",
+                  "        type: 'amount',",
+                  "        required: true,",
+                  "        description: 'Cost of message',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://api.twilio.com',",
+                  "    endpoint: '/2010-04-01/Accounts/{AccountSid}/Messages',",
+                  "    method: 'POST',",
+                  "    authType: 'API_KEY',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 100,",
+                  "      requestsPerDay: 10000000,",
+                  "    },",
+                  "    documentation: 'https://www.twilio.com/docs/sms/api',",
+                  "    logo: '\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 5. HUBSPOT - CRM & Marketing",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'hubspot-crm-v3',",
+                  "    name: 'HubSpot',",
+                  "    provider: 'HubSpot Inc.',",
+                  "    version: 'v3',",
+                  "    category: 'CRM',",
+                  "    description: 'Inbound marketing and sales platform',",
+                  "    endpoints: 78,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'email',",
+                  "        type: 'email',",
+                  "        required: true,",
+                  "        description: 'Contact email address',",
+                  "      },",
+                  "      {",
+                  "        name: 'firstname',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Contact first name',",
+                  "      },",
+                  "      {",
+                  "",
+                  "        name: 'lastname',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Contact last name',",
+                  "      },",
+                  "      {",
+                  "        name: 'phone',",
+                  "        type: 'phone',",
+                  "        required: false,",
+                  "        description: 'Contact phone',",
+                  "      },",
+                  "      {",
+                  "        name: 'company',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Company name',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'id',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'HubSpot contact ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'properties',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Contact properties (JSON)',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://api.hubapi.com',",
+                  "    endpoint: '/crm/v3/objects/contacts',",
+                  "    method: 'POST',",
+                  "    authType: 'Bearer',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 10,",
+                  "      requestsPerDay: 500000,",
+                  "    },",
+                  "    documentation: 'https://developers.hubspot.com/docs/api',",
+                  "    logo: '\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 6. QUICKBOOKS - Accounting",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'quickbooks-accounting-v3',",
+                  "    name: 'QuickBooks',",
+                  "    provider: 'Intuit Inc.',",
+                  "    version: 'v3',",
+                  "    category: 'Accounting',",
+                  "    description: 'Accounting and financial management',",
+                  "    endpoints: 56,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'customer_name',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Customer name',",
+                  "      },",
+                  "      {",
+                  "        name: 'email',",
+                  "        type: 'email',",
+                  "        required: false,",
+                  "        description: 'Customer email',",
+                  "      },",
+                  "      {",
+                  "        name: 'phone',",
+                  "        type: 'phone',",
+                  "        required: false,",
+                  "        description: 'Customer phone',",
+                  "",
+                  "      },",
+                  "      {",
+                  "        name: 'address',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Customer address',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'customer_id',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'QuickBooks customer ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'sync_token',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Sync token for updates',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://quickbooks.api.intuit.com',",
+                  "    endpoint: '/v2/company/{realmId}/customer',",
+                  "    method: 'POST',",
+                  "    authType: 'OAuth',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 10,",
+                  "      requestsPerDay: 200000,",
+                  "    },",
+                  "    documentation: 'https://developer.intuit.com/app/developer/qbo/docs/api',",
+                  "    logo: '\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 7. PAYPAL - Payment Processing",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'paypal-payments-v2',",
+                  "    name: 'PayPal',",
+                  "    provider: 'PayPal Inc.',",
+                  "    version: 'v2',",
+                  "    category: 'Payments',",
+                  "    description: 'Online payment processing',",
+                  "    endpoints: 62,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'amount',",
+                  "        type: 'amount',",
+                  "        required: true,",
+                  "        description: 'Payment amount',",
+                  "      },",
+                  "      {",
+                  "        name: 'currency_code',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Currency (USD, INR, EUR, GBP)',",
+                  "      },",
+                  "      {",
+                  "        name: 'reference_id',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Your reference ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'payment_method',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'PAYPAL, CARD, etc.',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "",
+                  "      {",
+                  "        name: 'id',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'PayPal payment ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'status',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'CREATED, APPROVED, FAILED',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://api.paypal.com',",
+                  "    endpoint: '/v2/checkout/orders',",
+                  "    method: 'POST',",
+                  "    authType: 'OAuth',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 50,",
+                  "      requestsPerDay: 5000000,",
+                  "    },",
+                  "    documentation: 'https://developer.paypal.com/docs/api',",
+                  "    logo: '\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 8. NETSUITE - ERP",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'netsuite-erp-v1',",
+                  "    name: 'NetSuite',",
+                  "    provider: 'Oracle NetSuite',",
+                  "    version: 'v1',",
+                  "    category: 'ERP',",
+                  "    description: 'Enterprise resource planning system',",
+                  "    endpoints: 90,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'record_type',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'salesorder, purchaseorder, invoice, etc.',",
+                  "      },",
+                  "      {",
+                  "        name: 'customer_id',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'NetSuite customer ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'amount',",
+                  "        type: 'amount',",
+                  "        required: false,",
+                  "        description: 'Transaction amount',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'record_id',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'NetSuite record ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'status',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Draft, Pending, Completed, etc.',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://your-account.suiteapis.com',",
+                  "    endpoint: '/services/rest/record/v1/salesorder',",
+                  "",
+                  "    method: 'POST',",
+                  "    authType: 'OAuth',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 10,",
+                  "      requestsPerDay: 100000,",
+                  "    },",
+                  "    documentation: 'https://docs.oracle.com/en/cloud/saas/netsuite',",
+                  "    logo: '\u25a0\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 9. XERO - Cloud Accounting",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'xero-accounting-v2',",
+                  "    name: 'Xero',",
+                  "    provider: 'Xero Limited',",
+                  "    version: 'v2',",
+                  "    category: 'Accounting',",
+                  "    description: 'Cloud accounting software',",
+                  "    endpoints: 48,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'contact_name',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Contact name',",
+                  "      },",
+                  "      {",
+                  "        name: 'email_address',",
+                  "        type: 'email',",
+                  "        required: false,",
+                  "        description: 'Contact email',",
+                  "      },",
+                  "      {",
+                  "        name: 'tax_number',",
+                  "        type: 'string',",
+                  "        required: false,",
+                  "        description: 'Tax ID or ABN',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'contact_id',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Xero contact ID',",
+                  "      },",
+                  "      {",
+                  "        name: 'has_attachments',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'true/false',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://api.xero.com',",
+                  "    endpoint: '/api.xro/2.0/Contacts',",
+                  "    method: 'POST',",
+                  "    authType: 'OAuth',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 5,",
+                  "      requestsPerDay: 50000,",
+                  "    },",
+                  "    documentation: 'https://developer.xero.com/documentation',",
+                  "    logo: '\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "  // ============================================",
+                  "  // 10. KYC PRO - Compliance & Verification",
+                  "  // ============================================",
+                  "  {",
+                  "    id: 'kyc-pro-compliance-v1',",
+                  "",
+                  "    name: 'KYC Pro',",
+                  "    provider: 'KYC Pro Compliance',",
+                  "    version: 'v1',",
+                  "    category: 'Compliance',",
+                  "    description: 'KYC verification and compliance checking',",
+                  "    endpoints: 35,",
+                  "    ",
+                  "    inputFields: [",
+                  "      {",
+                  "        name: 'full_name',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Full legal name',",
+                  "      },",
+                  "      {",
+                  "        name: 'date_of_birth',",
+                  "        type: 'date',",
+                  "        required: true,",
+                  "        description: 'DOB (YYYY-MM-DD)',",
+                  "      },",
+                  "      {",
+                  "        name: 'government_id',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Passport, ID, or License number',",
+                  "      },",
+                  "      {",
+                  "        name: 'country',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'Country code (ISO 3166)',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    outputFields: [",
+                  "      {",
+                  "        name: 'kyc_status',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'VERIFIED, FAILED, REVIEW',",
+                  "      },",
+                  "      {",
+                  "        name: 'compliance_score',",
+                  "        type: 'number',",
+                  "        required: true,",
+                  "        description: 'Score 0-100',",
+                  "      },",
+                  "      {",
+                  "        name: 'pep_match',",
+                  "        type: 'string',",
+                  "        required: true,",
+                  "        description: 'PEP screening result',",
+                  "      },",
+                  "    ],",
+                  "    ",
+                  "    baseUrl: 'https://api.kycpro.com',",
+                  "    endpoint: '/v1/verify',",
+                  "    method: 'POST',",
+                  "    authType: 'API_KEY',",
+                  "    rateLimits: {",
+                  "      requestsPerSecond: 20,",
+                  "      requestsPerDay: 500000,",
+                  "    },",
+                  "    documentation: 'https://kycpro.com/api/docs',",
+                  "    logo: '\u25a0',",
+                  "    status: 'active',",
+                  "  },",
+                  "]",
+                  ""
+                ],
+                "tables": [],
+                "extraction_quality_score": 0.83,
+                "processing_time_ms": 0.4649162292480469
+              },
+              "step_2_field_extraction": {
+                "extracted_fields": [
+                  {
+                    "field_name": "name",
+                    "value": "string",
+                    "confidence": 0.91,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "required",
+                    "value": "boolean",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "description",
+                    "value": "string",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "format?",
+                    "value": "string",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "validation?",
+                    "value": "RegExp",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "provider",
+                    "value": "string",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "category",
+                    "value": "'Payments' | 'Banking' | 'CRM' | 'Communications' | 'Accounting' | 'ERP' | 'Compliance'",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "endpoints",
+                    "value": "number",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "inputFields",
+                    "value": "APIField[]",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "outputFields",
+                    "value": "APIField[]",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "baseUrl",
+                    "value": "string",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "endpoint",
+                    "value": "string",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "method",
+                    "value": "'GET' | 'POST' | 'PUT'",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "authType",
+                    "value": "'API_KEY' | 'OAuth' | 'Bearer'",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "rateLimits",
+                    "value": "{",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "requestsPerSecond",
+                    "value": "number",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "requestsPerDay",
+                    "value": "number",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "documentation",
+                    "value": "string",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "logo?",
+                    "value": "string",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "status",
+                    "value": "'active' | 'maintenance' | 'inactive'",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "export const apiRegistry",
+                    "value": "APISpec[] = [",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "type",
+                    "value": "'amount',",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "name: 'customer_id'",
+                    "value": "",
+                    "confidence": 0.91,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "logo",
+                    "value": "'\u25a0',",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "name: 'start_date'",
+                    "value": "",
+                    "confidence": 0.91,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "name: 'end_date'",
+                    "value": "",
+                    "confidence": 0.91,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "description: 'Customer first name'",
+                    "value": "",
+                    "confidence": 0.91,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "description: 'Customer last name'",
+                    "value": "",
+                    "confidence": 0.91,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "name: 'created_date'",
+                    "value": "",
+                    "confidence": 0.91,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "name: 'customer_name'",
+                    "value": "",
+                    "confidence": 0.91,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "description: 'Customer name'",
+                    "value": "",
+                    "confidence": 0.91,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "description: 'Customer email'",
+                    "value": "",
+                    "confidence": 0.92,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "description: 'Customer phone'",
+                    "value": "",
+                    "confidence": 0.89,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "description: 'Customer address'",
+                    "value": "",
+                    "confidence": 0.85,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "endpoint: '/v2/company/{realmId}/customer'",
+                    "value": "",
+                    "confidence": 0.88,
+                    "data_type": "string"
+                  },
+                  {
+                    "field_name": "name: 'date_of_birth'",
+                    "value": "",
+                    "confidence": 0.91,
+                    "data_type": "string"
+                  }
+                ],
+                "missing_fields": {
+                  "mandatory": [],
+                  "optional": []
+                },
+                "intent": "loan_application",
+                "intent_confidence": 0.9,
+                "quality_metrics": {
+                  "extraction_completeness": 0.81
+                },
+                "processing_time_ms": 1.1262893676757812
+              },
+              "step_3_api_mapping": {
+                "mappings": [
+                  {
+                    "source_field": "name",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "name",
+                    "match_confidence": 0.91,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for name"
+                  },
+                  {
+                    "source_field": "required",
+                    "target_api_id": "stripe",
+                    "target_field": "required",
+                    "match_confidence": 0.85,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "description",
+                    "target_api_id": "stripe",
+                    "target_field": "description",
+                    "match_confidence": 0.85,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "format?",
+                    "target_api_id": "stripe",
+                    "target_field": "format?",
+                    "match_confidence": 0.85,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "validation?",
+                    "target_api_id": "stripe",
+                    "target_field": "validation?",
+                    "match_confidence": 0.85,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "provider",
+                    "target_api_id": "stripe",
+                    "target_field": "provider",
+                    "match_confidence": 0.85,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "category",
+                    "target_api_id": "stripe",
+                    "target_field": "category",
+                    "match_confidence": 0.81,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "endpoints",
+                    "target_api_id": "stripe",
+                    "target_field": "endpoints",
+                    "match_confidence": 0.85,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "inputFields",
+                    "target_api_id": "stripe",
+                    "target_field": "inputfields",
+                    "match_confidence": 0.83,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "outputFields",
+                    "target_api_id": "stripe",
+                    "target_field": "outputfields",
+                    "match_confidence": 0.82,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "baseUrl",
+                    "target_api_id": "stripe",
+                    "target_field": "baseurl",
+                    "match_confidence": 0.81,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "endpoint",
+                    "target_api_id": "stripe",
+                    "target_field": "endpoint",
+                    "match_confidence": 0.85,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "method",
+                    "target_api_id": "stripe",
+                    "target_field": "method",
+                    "match_confidence": 0.85,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "authType",
+                    "target_api_id": "stripe",
+                    "target_field": "authtype",
+                    "match_confidence": 0.81,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "rateLimits",
+                    "target_api_id": "stripe",
+                    "target_field": "ratelimits",
+                    "match_confidence": 0.85,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "requestsPerSecond",
+                    "target_api_id": "stripe",
+                    "target_field": "requestspersecond",
+                    "match_confidence": 0.85,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "requestsPerDay",
+                    "target_api_id": "stripe",
+                    "target_field": "requestsperday",
+                    "match_confidence": 0.83,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "documentation",
+                    "target_api_id": "stripe",
+                    "target_field": "documentation",
+                    "match_confidence": 0.85,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "logo?",
+                    "target_api_id": "stripe",
+                    "target_field": "logo?",
+                    "match_confidence": 0.84,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "status",
+                    "target_api_id": "stripe",
+                    "target_field": "status",
+                    "match_confidence": 0.85,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "export const apiRegistry",
+                    "target_api_id": "stripe",
+                    "target_field": "export_const_apiregistry",
+                    "match_confidence": 0.85,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "type",
+                    "target_api_id": "stripe",
+                    "target_field": "type",
+                    "match_confidence": 0.81,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "name: 'customer_id'",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "name",
+                    "match_confidence": 0.91,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for name"
+                  },
+                  {
+                    "source_field": "name: 'customer_id'",
+                    "target_api_id": "salesforce",
+                    "target_field": "name",
+                    "match_confidence": 0.81,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "name: 'customer_id'",
+                    "target_api_id": "netsuite",
+                    "target_field": "name",
+                    "match_confidence": 0.82,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "logo",
+                    "target_api_id": "stripe",
+                    "target_field": "logo",
+                    "match_confidence": 0.85,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Default fallback"
+                  },
+                  {
+                    "source_field": "name: 'start_date'",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "name",
+                    "match_confidence": 0.91,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for name"
+                  },
+                  {
+                    "source_field": "name: 'end_date'",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "name",
+                    "match_confidence": 0.91,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for name"
+                  },
+                  {
+                    "source_field": "description: 'Customer first name'",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "name",
+                    "match_confidence": 0.91,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for name"
+                  },
+                  {
+                    "source_field": "description: 'Customer first name'",
+                    "target_api_id": "salesforce",
+                    "target_field": "name",
+                    "match_confidence": 0.83,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "description: 'Customer first name'",
+                    "target_api_id": "netsuite",
+                    "target_field": "name",
+                    "match_confidence": 0.84,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "description: 'Customer last name'",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "name",
+                    "match_confidence": 0.91,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for name"
+                  },
+                  {
+                    "source_field": "description: 'Customer last name'",
+                    "target_api_id": "salesforce",
+                    "target_field": "name",
+                    "match_confidence": 0.83,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "description: 'Customer last name'",
+                    "target_api_id": "netsuite",
+                    "target_field": "name",
+                    "match_confidence": 0.79,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "name: 'created_date'",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "name",
+                    "match_confidence": 0.91,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for name"
+                  },
+                  {
+                    "source_field": "name: 'customer_name'",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "name",
+                    "match_confidence": 0.91,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for name"
+                  },
+                  {
+                    "source_field": "name: 'customer_name'",
+                    "target_api_id": "salesforce",
+                    "target_field": "name",
+                    "match_confidence": 0.78,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "name: 'customer_name'",
+                    "target_api_id": "netsuite",
+                    "target_field": "name",
+                    "match_confidence": 0.81,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "description: 'Customer name'",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "name",
+                    "match_confidence": 0.91,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for name"
+                  },
+                  {
+                    "source_field": "description: 'Customer name'",
+                    "target_api_id": "salesforce",
+                    "target_field": "name",
+                    "match_confidence": 0.8,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "description: 'Customer name'",
+                    "target_api_id": "netsuite",
+                    "target_field": "name",
+                    "match_confidence": 0.78,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "description: 'Customer email'",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "email",
+                    "match_confidence": 0.89,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for email"
+                  },
+                  {
+                    "source_field": "description: 'Customer email'",
+                    "target_api_id": "salesforce",
+                    "target_field": "email",
+                    "match_confidence": 0.79,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "description: 'Customer email'",
+                    "target_api_id": "netsuite",
+                    "target_field": "email",
+                    "match_confidence": 0.81,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "description: 'Customer phone'",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "phone",
+                    "match_confidence": 0.84,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for phone"
+                  },
+                  {
+                    "source_field": "description: 'Customer phone'",
+                    "target_api_id": "salesforce",
+                    "target_field": "phone",
+                    "match_confidence": 0.79,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "description: 'Customer phone'",
+                    "target_api_id": "twilio",
+                    "target_field": "phone",
+                    "match_confidence": 0.79,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: phone"
+                  },
+                  {
+                    "source_field": "description: 'Customer phone'",
+                    "target_api_id": "netsuite",
+                    "target_field": "phone",
+                    "match_confidence": 0.79,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "description: 'Customer address'",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "address",
+                    "match_confidence": 0.78,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for address"
+                  },
+                  {
+                    "source_field": "description: 'Customer address'",
+                    "target_api_id": "salesforce",
+                    "target_field": "address",
+                    "match_confidence": 0.8,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "description: 'Customer address'",
+                    "target_api_id": "netsuite",
+                    "target_field": "address",
+                    "match_confidence": 0.83,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "endpoint: '/v2/company/{realmId}/customer'",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "pan",
+                    "match_confidence": 0.88,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for pan"
+                  },
+                  {
+                    "source_field": "endpoint: '/v2/company/{realmId}/customer'",
+                    "target_api_id": "salesforce",
+                    "target_field": "pan",
+                    "match_confidence": 0.82,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "endpoint: '/v2/company/{realmId}/customer'",
+                    "target_api_id": "hubspot",
+                    "target_field": "pan",
+                    "match_confidence": 0.84,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: company"
+                  },
+                  {
+                    "source_field": "endpoint: '/v2/company/{realmId}/customer'",
+                    "target_api_id": "netsuite",
+                    "target_field": "pan",
+                    "match_confidence": 0.79,
+                    "status": "mapped",
+                    "mapping_type": "secondary",
+                    "ai_reasoning": "Secondary match via keyword: customer"
+                  },
+                  {
+                    "source_field": "name: 'date_of_birth'",
+                    "target_api_id": "kyc-pro",
+                    "target_field": "name",
+                    "match_confidence": 0.91,
+                    "status": "mapped",
+                    "mapping_type": "direct",
+                    "ai_reasoning": "Confidence for name"
+                  }
+                ],
+                "available_apis": [
+                  {
+                    "api_id": "salesforce",
+                    "description": "CRM and customer data platform",
+                    "keywords": [
+                      "customer",
+                      "contact",
+                      "opportunity",
+                      "lead",
+                      "account"
+                    ],
+                    "is_selected": true,
+                    "mapped_fields_count": 9
+                  },
+                  {
+                    "api_id": "stripe",
+                    "description": "Payment processing and billing API",
+                    "keywords": [
+                      "payment",
+                      "billing",
+                      "charge",
+                      "card",
+                      "transaction",
+                      "disbursement",
+                      "payout",
+                      "bank transfer",
+                      "upi",
+                      "amount"
+                    ],
+                    "is_selected": false,
+                    "mapped_fields_count": 22
+                  },
+                  {
+                    "api_id": "kyc-pro",
+                    "description": "Identity verification and KYC compliance API",
+                    "keywords": [
+                      "identity",
+                      "verification",
+                      "kyc",
+                      "compliance",
+                      "name",
+                      "aadhar",
+                      "pan",
+                      "address",
+                      "dob"
+                    ],
+                    "is_selected": false,
+                    "mapped_fields_count": 14
+                  },
+                  {
+                    "api_id": "netsuite",
+                    "description": "Enterprise resource planning system",
+                    "keywords": [
+                      "order",
+                      "customer",
+                      "inventory",
+                      "transaction",
+                      "subsidiary"
+                    ],
+                    "is_selected": false,
+                    "mapped_fields_count": 9
+                  }
+                ],
+                "selected_api": "salesforce",
+                "mapping_strategy": "ai_based",
+                "ai_status": "enabled",
+                "ai_analysis": [
+                  {
+                    "field_name": "name",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.92,
+                    "reasoning": "Confidence for name",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "required",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.92,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "description",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.86,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "format?",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.88,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "validation?",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.9,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "provider",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.86,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "category",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.81,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "endpoints",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.88,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "inputFields",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.83,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "outputFields",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.82,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "baseUrl",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.81,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "endpoint",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.91,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "method",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.89,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "authType",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.81,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "rateLimits",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.91,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "requestsPerSecond",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.88,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "requestsPerDay",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.83,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "documentation",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.87,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "logo?",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.84,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "status",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.9,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "export const apiRegistry",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.89,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "type",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.81,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "name: 'customer_id'",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.92,
+                    "reasoning": "Confidence for name",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "logo",
+                    "detected_api": "stripe",
+                    "ai_confidence": 0.9,
+                    "reasoning": "Default fallback",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "name: 'start_date'",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.92,
+                    "reasoning": "Confidence for name",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "name: 'end_date'",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.92,
+                    "reasoning": "Confidence for name",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "description: 'Customer first name'",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.92,
+                    "reasoning": "Confidence for name",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "description: 'Customer last name'",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.92,
+                    "reasoning": "Confidence for name",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "name: 'created_date'",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.92,
+                    "reasoning": "Confidence for name",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "name: 'customer_name'",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.92,
+                    "reasoning": "Confidence for name",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "description: 'Customer name'",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.92,
+                    "reasoning": "Confidence for name",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "description: 'Customer email'",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.89,
+                    "reasoning": "Confidence for email",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "description: 'Customer phone'",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.84,
+                    "reasoning": "Confidence for phone",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "description: 'Customer address'",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.78,
+                    "reasoning": "Confidence for address",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "endpoint: '/v2/company/{realmId}/customer'",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.88,
+                    "reasoning": "Confidence for pan",
+                    "transformation": null
+                  },
+                  {
+                    "field_name": "name: 'date_of_birth'",
+                    "detected_api": "kyc-pro",
+                    "ai_confidence": 0.92,
+                    "reasoning": "Confidence for name",
+                    "transformation": null
+                  }
+                ],
+                "mapping_statistics": {
+                  "mapped_fields": 56,
+                  "perfect_matches": 33,
+                  "good_matches": 22,
+                  "matches_with_transformation": 0,
+                  "average_confidence": 0.85,
+                  "overall_mapping_completeness": 0.91
+                },
+                "processing_time_ms": 31254.481077194214,
+                "recommendations": [
+                  "Using salesforce for this workflow"
+                ]
+              },
+              "step_4_simulation": {
+                "status": "SUCCESS",
+                "api_call_results": [
+                  {
+                    "api_id": "loan-api",
+                    "status": "SUCCESS",
+                    "response": {
+                      "response_time_ms": 120
+                    }
+                  }
+                ],
+                "deployment_readiness": {
+                  "is_ready": true,
+                  "readiness_score": 0.9,
+                  "checklist": {
+                    "fields_present": true,
+                    "mapping_complete": true,
+                    "api_success": true
+                  },
+                  "issues": [],
+                  "warnings": []
+                },
+                "simulation_logs": [
+                  {
+                    "level": "INFO",
+                    "message": "Simulation started"
+                  },
+                  {
+                    "level": "SUCCESS",
+                    "message": "API call successful"
+                  }
+                ],
+                "duration_ms": 0.002384185791015625
+              }
+            },
+            "detected_apis": [
+              {
+                "api_id": "kyc-pro",
+                "name": "KYC & Identity Verification",
+                "category": "Compliance/Verification",
+                "confidence": 0.57,
+                "matched_keywords": [
+                  "pan",
+                  "kyc verification",
+                  "first_name"
+                ],
+                "priority": 1,
+                "fields": [
+                  "first_name",
+                  "last_name",
+                  "date_of_birth",
+                  "address",
+                  "pan_number",
+                  "aadhar_number",
+                  "phone_number",
+                  "email"
+                ],
+                "field_matches": 5,
+                "requirement_matches": 2
+              },
+              {
+                "api_id": "loan-origination",
+                "name": "Loan Origination Platform",
+                "category": "Lending",
+                "confidence": 0.29,
+                "matched_keywords": [
+                  "loan_type",
+                  "customer_id"
+                ],
+                "priority": 1,
+                "fields": [
+                  "loan_amount",
+                  "loan_type",
+                  "tenure",
+                  "interest_rate",
+                  "customer_id"
+                ],
+                "field_matches": 2,
+                "requirement_matches": 0
+              },
+              {
+                "api_id": "bank-disbursal",
+                "name": "Bank Disbursal & UPI",
+                "category": "Banking/Payments",
+                "confidence": 0.25,
+                "matched_keywords": [
+                  "account_holder_name",
+                  "bank_name"
+                ],
+                "priority": 1,
+                "fields": [
+                  "account_number",
+                  "ifsc_code",
+                  "account_holder_name",
+                  "bank_name",
+                  "upi_id",
+                  "loan_amount"
+                ],
+                "field_matches": 2,
+                "requirement_matches": 0
+              },
+              {
+                "api_id": "upi-gateway",
+                "name": "UPI Payment Gateway",
+                "category": "Payments",
+                "confidence": 0.25,
+                "matched_keywords": [
+                  "beneficiary_name"
+                ],
+                "priority": 1,
+                "fields": [
+                  "upi_id",
+                  "amount",
+                  "transaction_id",
+                  "beneficiary_name"
+                ],
+                "field_matches": 1,
+                "requirement_matches": 0
+              },
+              {
+                "api_id": "salesforce",
+                "name": "CRM Platform",
+                "category": "CRM",
+                "confidence": 0.6,
+                "matched_keywords": [
+                  "customer_id",
+                  "contact_name",
+                  "email"
+                ],
+                "priority": 2,
+                "fields": [
+                  "customer_id",
+                  "contact_name",
+                  "email",
+                  "phone_number"
+                ],
+                "field_matches": 3,
+                "requirement_matches": 0
+              },
+              {
+                "api_id": "cibil",
+                "name": "CIBIL Credit Check",
+                "category": "Credit/Risk",
+                "confidence": 0.33,
+                "matched_keywords": [
+                  "full_name",
+                  "date_of_birth"
+                ],
+                "priority": 2,
+                "fields": [
+                  "full_name",
+                  "pan_number",
+                  "date_of_birth",
+                  "credit_score"
+                ],
+                "field_matches": 2,
+                "requirement_matches": 0
+              },
+              {
+                "api_id": "esign",
+                "name": "e-Sign Integration",
+                "category": "Document Signing",
+                "confidence": 0.25,
+                "matched_keywords": [
+                  "signer_name"
+                ],
+                "priority": 2,
+                "fields": [
+                  "document_id",
+                  "signer_name",
+                  "signature_date"
+                ],
+                "field_matches": 1,
+                "requirement_matches": 0
+              },
+              {
+                "api_id": "twilio",
+                "name": "SMS & Notifications",
+                "category": "Communication",
+                "confidence": 0.33,
+                "matched_keywords": [
+                  "sms",
+                  "notification_type"
+                ],
+                "priority": 3,
+                "fields": [
+                  "phone_number",
+                  "message",
+                  "notification_type"
+                ],
+                "field_matches": 1,
+                "requirement_matches": 1
+              }
+            ],
+            "field_to_api_mapping": {
+              "name": [
+                "kyc-pro",
+                "salesforce"
+              ],
+              "required": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "description": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "format?": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "validation?": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "provider": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "category": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "endpoints": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "inputfields": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "outputfields": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "baseurl": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "endpoint": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "method": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "authtype": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "ratelimits": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "requestspersecond": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "requestsperday": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "documentation": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "logo?": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "status": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "export_const_apiregistry": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "type": [
+                "twilio",
+                "loan-origination"
+              ],
+              "name:_'customer_id'": [
+                "salesforce",
+                "loan-origination"
+              ],
+              "logo": [
+                "kyc-pro",
+                "loan-origination"
+              ],
+              "name:_'start_date'": [
+                "kyc-pro",
+                "salesforce"
+              ],
+              "name:_'end_date'": [
+                "kyc-pro",
+                "salesforce"
+              ],
+              "description:_'customer_first_name'": [
+                "kyc-pro"
+              ],
+              "description:_'customer_last_name'": [
+                "kyc-pro"
+              ],
+              "name:_'created_date'": [
+                "kyc-pro",
+                "salesforce"
+              ],
+              "name:_'customer_name'": [
+                "kyc-pro",
+                "salesforce"
+              ],
+              "description:_'customer_name'": [
+                "kyc-pro",
+                "salesforce"
+              ],
+              "description:_'customer_email'": [
+                "kyc-pro",
+                "salesforce"
+              ],
+              "description:_'customer_phone'": [
+                "twilio",
+                "salesforce",
+                "kyc-pro"
+              ],
+              "description:_'customer_address'": [
+                "kyc-pro"
+              ],
+              "endpoint:_'/v2/company/{realmid}/customer'": [
+                "kyc-pro",
+                "salesforce"
+              ],
+              "name:_'date_of_birth'": [
+                "kyc-pro",
+                "cibil"
+              ]
+            },
+            "workflow_requirements": [
+              "// 1. STRIPE - Payment Processing",
+              "id: 'stripe-payments-v3',",
+              "// 2. PLAID - Banking & Financial Data",
+              "id: 'plaid-banking-v2',",
+              "description: 'Start date for transactions (YYYY-MM-DD)',",
+              "description: 'End date for transactions (YYYY-MM-DD)',",
+              "// 3. SALESFORCE - CRM",
+              "id: 'salesforce-crm-v56',",
+              "baseUrl: 'https://your-instance.salesforce.com',",
+              "// 4. TWILIO - Communications"
+            ],
+            "auto_detected": true
+          }
+        ],
+        "summary": {
+          "total_documents": 1,
+          "status": "completed"
+        },
+        "intelligent_analysis": {
+          "apis_detected": 8,
+          "detected_apis": [
+            {
+              "api_id": "kyc-pro",
+              "name": "KYC & Identity Verification",
+              "category": "Compliance/Verification",
+              "confidence": 0.57,
+              "matched_keywords": [
+                "pan",
+                "kyc verification",
+                "first_name"
+              ],
+              "priority": 1,
+              "fields": [
+                "first_name",
+                "last_name",
+                "date_of_birth",
+                "address",
+                "pan_number",
+                "aadhar_number",
+                "phone_number",
+                "email"
+              ],
+              "field_matches": 5,
+              "requirement_matches": 2
+            },
+            {
+              "api_id": "loan-origination",
+              "name": "Loan Origination Platform",
+              "category": "Lending",
+              "confidence": 0.29,
+              "matched_keywords": [
+                "loan_type",
+                "customer_id"
+              ],
+              "priority": 1,
+              "fields": [
+                "loan_amount",
+                "loan_type",
+                "tenure",
+                "interest_rate",
+                "customer_id"
+              ],
+              "field_matches": 2,
+              "requirement_matches": 0
+            },
+            {
+              "api_id": "bank-disbursal",
+              "name": "Bank Disbursal & UPI",
+              "category": "Banking/Payments",
+              "confidence": 0.25,
+              "matched_keywords": [
+                "account_holder_name",
+                "bank_name"
+              ],
+              "priority": 1,
+              "fields": [
+                "account_number",
+                "ifsc_code",
+                "account_holder_name",
+                "bank_name",
+                "upi_id",
+                "loan_amount"
+              ],
+              "field_matches": 2,
+              "requirement_matches": 0
+            },
+            {
+              "api_id": "upi-gateway",
+              "name": "UPI Payment Gateway",
+              "category": "Payments",
+              "confidence": 0.25,
+              "matched_keywords": [
+                "beneficiary_name"
+              ],
+              "priority": 1,
+              "fields": [
+                "upi_id",
+                "amount",
+                "transaction_id",
+                "beneficiary_name"
+              ],
+              "field_matches": 1,
+              "requirement_matches": 0
+            },
+            {
+              "api_id": "salesforce",
+              "name": "CRM Platform",
+              "category": "CRM",
+              "confidence": 0.6,
+              "matched_keywords": [
+                "customer_id",
+                "contact_name",
+                "email"
+              ],
+              "priority": 2,
+              "fields": [
+                "customer_id",
+                "contact_name",
+                "email",
+                "phone_number"
+              ],
+              "field_matches": 3,
+              "requirement_matches": 0
+            },
+            {
+              "api_id": "cibil",
+              "name": "CIBIL Credit Check",
+              "category": "Credit/Risk",
+              "confidence": 0.33,
+              "matched_keywords": [
+                "full_name",
+                "date_of_birth"
+              ],
+              "priority": 2,
+              "fields": [
+                "full_name",
+                "pan_number",
+                "date_of_birth",
+                "credit_score"
+              ],
+              "field_matches": 2,
+              "requirement_matches": 0
+            },
+            {
+              "api_id": "esign",
+              "name": "e-Sign Integration",
+              "category": "Document Signing",
+              "confidence": 0.25,
+              "matched_keywords": [
+                "signer_name"
+              ],
+              "priority": 2,
+              "fields": [
+                "document_id",
+                "signer_name",
+                "signature_date"
+              ],
+              "field_matches": 1,
+              "requirement_matches": 0
+            },
+            {
+              "api_id": "twilio",
+              "name": "SMS & Notifications",
+              "category": "Communication",
+              "confidence": 0.33,
+              "matched_keywords": [
+                "sms",
+                "notification_type"
+              ],
+              "priority": 3,
+              "fields": [
+                "phone_number",
+                "message",
+                "notification_type"
+              ],
+              "field_matches": 1,
+              "requirement_matches": 1
+            }
+          ],
+          "field_mappings_auto_generated": {
+            "name": [
+              "kyc-pro",
+              "salesforce"
+            ],
+            "required": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "description": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "format?": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "validation?": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "provider": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "category": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "endpoints": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "inputfields": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "outputfields": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "baseurl": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "endpoint": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "method": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "authtype": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "ratelimits": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "requestspersecond": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "requestsperday": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "documentation": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "logo?": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "status": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "export_const_apiregistry": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "type": [
+              "twilio",
+              "loan-origination"
+            ],
+            "name:_'customer_id'": [
+              "salesforce",
+              "loan-origination"
+            ],
+            "logo": [
+              "kyc-pro",
+              "loan-origination"
+            ],
+            "name:_'start_date'": [
+              "kyc-pro",
+              "salesforce"
+            ],
+            "name:_'end_date'": [
+              "kyc-pro",
+              "salesforce"
+            ],
+            "description:_'customer_first_name'": [
+              "kyc-pro"
+            ],
+            "description:_'customer_last_name'": [
+              "kyc-pro"
+            ],
+            "name:_'created_date'": [
+              "kyc-pro",
+              "salesforce"
+            ],
+            "name:_'customer_name'": [
+              "kyc-pro",
+              "salesforce"
+            ],
+            "description:_'customer_name'": [
+              "kyc-pro",
+              "salesforce"
+            ],
+            "description:_'customer_email'": [
+              "kyc-pro",
+              "salesforce"
+            ],
+            "description:_'customer_phone'": [
+              "twilio",
+              "salesforce",
+              "kyc-pro"
+            ],
+            "description:_'customer_address'": [
+              "kyc-pro"
+            ],
+            "endpoint:_'/v2/company/{realmid}/customer'": [
+              "kyc-pro",
+              "salesforce"
+            ],
+            "name:_'date_of_birth'": [
+              "kyc-pro",
+              "cibil"
+            ]
+          },
+          "workflow_steps": [
+            "// 1. STRIPE - Payment Processing",
+            "id: 'stripe-payments-v3',",
+            "// 2. PLAID - Banking & Financial Data",
+            "id: 'plaid-banking-v2',",
+            "description: 'Start date for transactions (YYYY-MM-DD)',",
+            "description: 'End date for transactions (YYYY-MM-DD)',",
+            "// 3. SALESFORCE - CRM",
+            "id: 'salesforce-crm-v56',",
+            "baseUrl: 'https://your-instance.salesforce.com',",
+            "// 4. TWILIO - Communications"
+          ],
+          "automation_level": "FULL_AUTO"
+        }
+      },
+      "status": "completed"
+    }
+  ]
+}
