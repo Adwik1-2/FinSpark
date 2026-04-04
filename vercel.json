@@ -1,0 +1,10 @@
+{
+  "buildCommand": "cd FinSpark-Integration-Orchestrator && npm install && npm run build",
+  "outputDirectory": "FinSpark-Integration-Orchestrator/dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
