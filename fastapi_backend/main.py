@@ -10,6 +10,11 @@ from datetime import datetime
 # Load environment variables from .env file
 load_dotenv()
 
+# Import database and auth
+from database import init_db
+from auth_routes import router as auth_router
+from admin_routes import router as admin_router
+
 # Import your engine and analyzer
 from engine import run_full_pipeline, generate_summary_report
 from requirement_analyzer import analyzer
@@ -30,6 +35,15 @@ except ImportError:
     Document = None
 
 app = FastAPI(title="FinSpark Processing Engine", version="1.0.0")
+
+# Initialize database and create tables
+init_db()
+
+# Include auth routes
+app.include_router(auth_router)
+
+# Include admin routes
+app.include_router(admin_router)
 
 # Enable CORS for frontend
 app.add_middleware(
