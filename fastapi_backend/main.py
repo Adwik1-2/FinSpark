@@ -10,11 +10,6 @@ from datetime import datetime
 # Load environment variables from .env file
 load_dotenv()
 
-# Import database and auth
-from database import init_db
-from auth_routes import router as auth_router
-from admin_routes import router as admin_router
-
 # Import your engine and analyzer
 from engine import run_full_pipeline, generate_summary_report
 from requirement_analyzer import analyzer
@@ -36,34 +31,19 @@ except ImportError:
 
 app = FastAPI(title="FinSpark Processing Engine", version="1.0.0")
 
-# Initialize database and create tables
-init_db()
-
-# Include auth routes
-app.include_router(auth_router)
-
-# Include admin routes
-app.include_router(admin_router)
-
 # Enable CORS for frontend
-# Configure allowed origins from environment or use defaults
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "").split(",") if os.getenv("ALLOWED_ORIGINS") else [
-    "http://localhost:5173",
-    "http://localhost:5174",
-    "http://localhost:5175",
-    "http://localhost:5176",
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1:5173",
-    "http://127.0.0.1:5174",
-    "http://127.0.0.1:5175",
-    "http://127.0.0.1:5176",
-    # Production URLs - add your deployed frontend URL here
-    "https://finspark.vercel.app",
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "http://localhost:5175",
+        "http://localhost:5176",
+        "http://127.0.0.1:5173",
+        "http://127.0.0.1:5174",
+        "http://127.0.0.1:5175",
+        "http://127.0.0.1:5176",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
