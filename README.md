@@ -93,6 +93,3 @@ For detailed setup instructions, see [SETUP_GUIDE.md](SETUP_GUIDE.md)
 - [fastapi_backend/README.md](fastapi_backend/README.md) - Backend setup
 - [FinSpark-Integration-Orchestrator/README.md](FinSpark-Integration-Orchestrator/README.md) - Frontend setup
 
-## 📝 License
-
-MIT
