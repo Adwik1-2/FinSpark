@@ -91,5 +91,5 @@ For detailed setup instructions, see [SETUP_GUIDE.md](SETUP_GUIDE.md)
 
 - [SYSTEM_GUIDE.md](SYSTEM_GUIDE.md) - Architecture & workflow
 - [fastapi_backend/README.md](fastapi_backend/README.md) - Backend setup
-- [FinSpark-Integration-Orchestrator/README.md](FinSpark-Integration-Orchestrator/README.md) - Frontend setup
+- [FinSpark-Integration-Orchestrator/README.md](FinSpark-Integration-Orchestrator/README.md) - Frontend setup.
 
