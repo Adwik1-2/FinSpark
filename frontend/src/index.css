@@ -2393,6 +2393,22 @@ main {
   .app-shell textarea {
     cursor: auto;
   }
+  /* Native modal dialogs occupy the top layer, above the animated cursor. */
+  .app-shell:has(.api-dialog[open]) .finance-cursor {
+    visibility: hidden;
+  }
+  .app-shell .api-dialog,
+  .api-dialog::backdrop {
+    cursor:
+      url("/finance-cursor.svg") 16 16,
+      auto;
+  }
+  .app-shell .api-dialog button,
+  .app-shell .api-dialog a {
+    cursor:
+      url("/finance-cursor.svg") 16 16,
+      pointer;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .workbench::after {
