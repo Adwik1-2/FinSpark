@@ -1,95 +1,80 @@
-# FinSpark Integration Orchestrator 🚀
+# FinSpark
 
-A financial document processing and API integration platform powered by AI.
+**An inspectable workbench for financial API integration.**
 
-## 🎯 Overview
+Read a financial requirements document, extract fields, suggest API adapters, and simulate a workflow. Select a requirement to inspect its source evidence and connections before writing an integration.
 
-FinSpark automates the analysis of financial documents (BRDs, PDFs) and intelligently detects financial APIs for seamless integration.
+## Explore
 
-## 🏗️ Architecture
+The application opens with a fictional loan specification. Without accounts or API keys, you can inspect requirements, explore eight adapter templates, simulate a workflow, and export the plan. TXT documents can be analyzed in the browser with keyword rules. PDF and DOCX processing requires a connected FastAPI service and an account.
 
-```
-Frontend (React)          Backend (FastAPI)
-├─ Components            ├─ Document Parser
-├─ Pages                 ├─ AI Analyzer  
-└─ Utils                 └─ API Detection
-    ↓                           ↓
-    └──────────────────────────┘
-         HTTP REST API
-```
+**Simulation does not verify identities, make lending decisions, send SMS, or move money.** Adapter definitions are templates, not connected financial providers. Suggested mappings and heuristic scores require human review.
 
-## 📦 Project Structure
+## Workflow
 
-```
-fins/
-├── fastapi_backend/              # FastAPI Backend
-│   ├── main.py                   # Entry point
-│   ├── engine.py                 # Document parsing
-│   ├── ai_mapper.py              # API detection
-│   ├── database.py               # Database config
-│   ├── models.py                 # Data models
-│   ├── requirements.txt          # Dependencies
-│   └── README.md                 # Backend docs
-│
-├── FinSpark-Integration-Orchestrator/  # React Frontend
-│   ├── src/
-│   │   ├── components/           # React components
-│   │   ├── pages/                # Page components
-│   │   ├── utils/                # Utilities
-│   │   └── App.tsx               # Main app
-│   ├── package.json              # Dependencies
-│   └── README.md                 # Frontend docs
-│
-├── SYSTEM_GUIDE.md               # System architecture
-└── README.md                     # This file
+```mermaid
+flowchart LR
+    A[PDF / DOCX / TXT] --> B[Parse sections and fields]
+    B --> C[Suggest adapters]
+    C --> D[Inspect evidence and mapping]
+    D --> E[Simulate and export]
 ```
 
-## 🚀 Quick Start
+## Quick start
 
-### Prerequisites
+Requirements: Node.js 22, npm, Python 3.12.
 
-- **Node.js** 16+ & npm
-- **Python** 3.8+
-- **Git**
-
-### Backend Setup
-
-```bash
-cd fastapi_backend
-pip install -r requirements.txt
-python main.py
-```
-
-Server runs at: `http://127.0.0.1:8001`
-
-### Frontend Setup
-
-```bash
-cd FinSpark-Integration-Orchestrator
-npm install
+```sh
+cd frontend
+npm ci
 npm run dev
 ```
 
-Frontend runs at: `http://localhost:5176`
+Open `http://localhost:5176`. Samples and local TXT analysis work immediately.
 
-For detailed setup instructions, see [SETUP_GUIDE.md](SETUP_GUIDE.md)
+For backend processing, use a second terminal:
 
-## 📋 Key Features
+```sh
+cd backend
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+# macOS/Linux: source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -X utf8 -m uvicorn app.main:app --port 8001
+```
 
-- **Document Processing** - Parse financial documents (BRDs, PDFs)
-- **AI-Powered API Detection** - Identify financial APIs automatically
-- **API Documentation Generation** - Create integration docs
-- **Pipeline Execution** - Test and simulate integrations
+In **Settings**, enter `http://127.0.0.1:8001`, choose **Test & save connection**, and sign in. Account creation requires SMTP email verification. Environment variables are documented in [Setup](docs/setup.md).
 
-## 🛠️ Technology Stack
+## Structure
 
-**Frontend:** React 18, TypeScript, Vite, Tailwind CSS  
-**Backend:** FastAPI, SQLAlchemy, Pydantic  
-**AI:** Llama 3.1, Hugging Face API
+```text
+frontend/                  React + TypeScript + Vite
+  src/lib/                 Browser analysis, API client, adapter definitions
+  src/legacy/              Recovered original frontend for reference
+backend/
+  app/api/                 HTTP routes and schemas
+  app/services/            Parsing, analysis, mapping, document history
+  app/core/                Configuration and authentication helpers
+  app/db/                  SQLAlchemy database and models
+  tests/                   Workflow and authentication checks
+docs/                      Setup, architecture, deployment, migration
+examples/                  Fictional requirements
+.github/workflows/         Automated frontend and backend checks
+render.yaml                Backend hosting blueprint
+```
 
-## 📚 Documentation
+## Validate
 
-- [SYSTEM_GUIDE.md](SYSTEM_GUIDE.md) - Architecture & workflow
-- [fastapi_backend/README.md](fastapi_backend/README.md) - Backend setup
-- [FinSpark-Integration-Orchestrator/README.md](FinSpark-Integration-Orchestrator/README.md) - Frontend setup.
+Frontend: run `npm run build` from `frontend`.
 
+Backend: install `requirements-dev.txt`, then run `python -X utf8 -m pytest -q` from `backend`.
+
+## Documentation
+
+- [Setup](docs/setup.md)
+- [Architecture and data handling](docs/architecture.md)
+- [Hosting](docs/deployment.md)
+- [Migration](docs/migration.md)
+- [Contributing](CONTRIBUTING.md)
+
+This is a prototype for integration planning. The original multilingual assistant and earlier UI remain in `frontend/src/legacy`, outside the active bundle. The mock admin router is preserved as source but is not mounted. Optional external Hugging Face inference remains available in the Python engine; it was not tested without a key.
