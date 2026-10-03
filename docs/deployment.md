@@ -6,6 +6,25 @@ Vite builds to `frontend/dist`. `frontend/.openai/hosting.json` declares the sta
 
 Set `VITE_API_BASE_URL` before building for a shared backend, or configure it in the app's Settings. The latter is a device-local preference.
 
+## GitHub Pages
+
+`.github/workflows/pages.yml` builds the frontend and publishes `frontend/dist` after frontend changes reach `main`. The workflow also supports manual runs. It passes Vite the repository base path, `/FinSpark/`, so scripts, styles, the favicon and the dialog cursor load correctly under a project URL.
+
+Before the first deployment, a repository administrator or maintainer must open **Settings → Pages → Build and deployment → Source** and select **GitHub Actions**. Then run **Deploy FinSpark to GitHub Pages** in the Actions tab, or push another frontend change to `main`. Confirm the deployment's reported URL and successful status before advertising it as live.
+
+The expected address for this repository is `https://adwik1-2.github.io/FinSpark/`. GitHub Pages hosts only the static frontend; the Python service stays on Render. Add `https://adwik1-2.github.io` to the backend's `ALLOWED_ORIGINS` alongside the existing hosted frontend origin. Pages is a public demo: adapter execution remains simulated, and demo accounts/history use temporary storage.
+
+For a local check of the Pages build:
+
+```sh
+cd frontend
+npm ci
+npm run build -- --base=/FinSpark/
+npm run preview
+```
+
+Open the preview's `/FinSpark/` path. Ordinary builds keep the root base path for the existing hosted workbench.
+
 ## Backend
 
 `render.yaml` prepares a Python web service with root directory `backend`:

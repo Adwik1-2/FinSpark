@@ -1,5 +1,7 @@
 # FinSpark
 
+[Open the hosted workbench (access restricted)](https://finspark-integration-workbench.y63753374.chatgpt.site/) · [Deployment guide](docs/deployment.md)
+
 **An inspectable workbench for financial API integration.**
 
 Read a financial requirements document, extract fields, suggest API adapters, and simulate a workflow. Select a requirement to inspect its source evidence and connections before writing an integration.
@@ -77,4 +79,4 @@ Backend: install `requirements-dev.txt`, then run `python -X utf8 -m pytest -q` 
 - [Migration](docs/migration.md)
 - [Contributing](CONTRIBUTING.md)
 
-This is a prototype for integration planning. The original multilingual assistant and earlier UI remain in `frontend/src/legacy`, outside the active bundle. The mock admin router is preserved as source but is not mounted. Optional external Hugging Face inference remains available in the Python engine; it was not tested without a key.
+This is a prototype for integration planning. The original multilingual assistant and earlier UI remain in `frontend/src/legacy`, outside the active bundle. The mock admin router and hardcoded admin seeder were removed. Optional external Hugging Face inference remains available in the Python engine; it was not tested without a key.
